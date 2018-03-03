@@ -37,6 +37,8 @@ import org.rookit.api.dm.genre.Genreable;
 import org.rookit.api.dm.play.able.Playable;
 import org.rookit.api.dm.track.audio.AudioFeature;
 
+import com.google.common.base.Optional;
+
 @SuppressWarnings("javadoc")
 @Entity("Track")
 @Indexes({
@@ -54,8 +56,6 @@ import org.rookit.api.dm.track.audio.AudioFeature;
 })
 public interface Track extends AudioFeature, Playable, Genreable, Comparable<Track>, TrackSetter<Void> {
 
-	short MAX_BPM = 400;
-
 	TypeTrack getType();
 
 	TrackTitle getTitle();
@@ -66,12 +66,12 @@ public interface Track extends AudioFeature, Playable, Genreable, Comparable<Tra
 	Collection<Artist> getFeatures();
 	Collection<Artist> getProducers();
 
-	String getHiddenTrack();
+	Optional<String> getHiddenTrack();
 
-	VersionTrack getAsVersionTrack();
+	Optional<VersionTrack> getAsVersionTrack();
 	boolean isVersionTrack();
 
-	String getLyrics();
+	Optional<String> getLyrics();
 
 	Boolean isExplicit();
 

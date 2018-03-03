@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
@@ -143,7 +144,7 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 	 * @return the list of tracks from the disc passed as parameter
 	 */
 	Collection<TrackSlot> getTracks(String cd);
-	
+
 	TrackSlot getTrack(String discName, Integer number);
 
 	/**
@@ -182,7 +183,7 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 	 * @return the total length of the disc in seconds.
 	 */
 	Duration getDuration(String cd);
-	
+
 	@Override
 	default Optional<Duration> getDuration() {
 		return Optional.of(getDiscs().stream()
@@ -195,7 +196,7 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 	 * @return a set of the album discs.
 	 */
 	Collection<String> getDiscs();
-	
+
 	/**
 	 * Return the number of discs in the album.
 	 * @return number of discs in the album.
@@ -237,11 +238,11 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 				.findFirst()
 				.isPresent();
 	}
-	
+
 	default boolean contains(TrackSlot slot) {
 		return contains(slot.getDisc(), slot.getNumber());
 	}
-	
+
 	/**
 	 * Searches for the track number passed as parameter in the disc (also passed as parameter).
 	 * 
@@ -266,15 +267,15 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 	default Optional<String> getTrackDisc(final Track track) {
 		return getSlot(track).transform(TrackSlot::getDisc);
 	}
-	
+
 	@Override
 	boolean equals(Object obj);
-	
+
 	@Override
 	int hashCode();
 
 	Collection<Integer> getTrackNumbers(String cd);
-	
+
 	default Optional<TrackSlot> getSlot(final Track track) {
 		Objects.requireNonNull(track, "Track cannot be null");
 
@@ -283,17 +284,19 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 				.filter(trackSlot -> trackSlot.getTrack().equals(track))
 				.findFirst());
 	}
-	
+
 	@Override
 	default Collection<Genre> getAllGenres() {
-		return Collections.unmodifiableCollection(
-				getTracks().stream()
+		final Set<Genre> allGenres = getTracks().stream()
 				.map(TrackSlot::getTrack)
 				.map(Track::getGenres)
 				.flatMap(Collection::stream)
-				.collect(Collectors.toList()));
+				.collect(Collectors.toSet());
+		allGenres.addAll(getGenres());
+
+		return Collections.unmodifiableCollection(allGenres);
 	}
-	
+
 	@Override
 	default int compareTo(final Album o) {
 		final int title = getTitle().compareTo(o.getTitle());

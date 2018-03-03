@@ -23,6 +23,6 @@ public interface TrackSetter<T> {
 	
 	T setLyrics(String lyrics);
 
-	T setExplicit(Boolean explicit);
+	T setExplicit(boolean explicit);
 
 }

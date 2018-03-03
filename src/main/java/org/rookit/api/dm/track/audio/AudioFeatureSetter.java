@@ -9,11 +9,11 @@ public interface AudioFeatureSetter<T> {
 	
 	T setTrackMode(TrackMode trackMode);
 	
-	T setInstrumental(Boolean isInstrumental);
+	T setInstrumental(boolean isInstrumental);
 	
-	T setLive(Boolean isLive);
+	T setLive(boolean isLive);
 	
-	T setAcoustic(Boolean isAcoustic);
+	T setAcoustic(boolean isAcoustic);
 	
 	T setDanceability(double danceability);
 	

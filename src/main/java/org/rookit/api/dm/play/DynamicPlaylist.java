@@ -3,6 +3,8 @@ package org.rookit.api.dm.play;
 import org.rookit.api.dm.track.audio.AudioFeature;
 import org.rookit.api.storage.queries.TrackQuery;
 
+import com.google.common.base.Optional;
+
 @SuppressWarnings("javadoc")
 public interface DynamicPlaylist extends AudioFeature, Playlist, PlaylistSetter<Void> {
 	
@@ -10,5 +12,7 @@ public interface DynamicPlaylist extends AudioFeature, Playlist, PlaylistSetter<
 	
 	TrackQuery applyQuery(TrackQuery original);
 	
-	Void setOnlyPlayable(Boolean onlyPlayable);
+	Void setOnlyPlayable(boolean onlyPlayable);
+
+	Optional<Boolean> isOnlyPlayable();
 }

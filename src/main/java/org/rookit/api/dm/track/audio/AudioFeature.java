@@ -1,23 +1,31 @@
 package org.rookit.api.dm.track.audio;
 
+import com.google.common.base.Optional;
+import com.google.common.collect.Range;
+
 @SuppressWarnings("javadoc")
 public interface AudioFeature extends AudioFeatureSetter<Void> {
 
-	short getBPM();
+	Range<Short> RANGE_BPM = Range.closedOpen((short) 0, (short) 400);
+	Range<Double> RANGE_DANCEABILITY = Range.open(0.0, 1.0);
+	Range<Double> RANGE_ENERGY = Range.open(0.0, 1.0);
+	Range<Double> RANGE_VALENCE = Range.open(0.0, 1.0);
+
+	Optional<Short> getBPM();
 	
-	TrackKey getTrackKey();
+	Optional<TrackKey> getTrackKey();
 	
-	TrackMode getTrackMode();
+	Optional<TrackMode> getTrackMode();
 	
-	Boolean isInstrumental();
+	Optional<Boolean> isInstrumental();
 	
-	Boolean isLive();
+	Optional<Boolean> isLive();
 	
-	Boolean isAcoustic();
+	Optional<Boolean> isAcoustic();
 	
-	double getDanceability();
+	Optional<Double> getDanceability();
 	
-	double getEnergy();
+	Optional<Double> getEnergy();
 	
-	double getValence();
+	Optional<Double> getValence();
 }
