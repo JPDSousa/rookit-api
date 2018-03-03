@@ -47,6 +47,8 @@ import org.rookit.api.storage.utils.Order;
 @SuppressWarnings("javadoc")
 public interface DBManager extends Closeable{
 	
+	String getName();
+	
 	void reset();
 	
 	void init();
