@@ -1,7 +1,10 @@
-package org.rookit.api.dm.album;
+package org.rookit.api.dm.album.factory;
 
 import java.util.Set;
 
+import org.rookit.api.dm.album.Album;
+import org.rookit.api.dm.album.TypeAlbum;
+import org.rookit.api.dm.album.TypeRelease;
 import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.factory.RookitFactory;
 
