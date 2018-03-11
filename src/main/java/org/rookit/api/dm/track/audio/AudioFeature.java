@@ -1,6 +1,7 @@
 package org.rookit.api.dm.track.audio;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
+
 import com.google.common.collect.Range;
 
 @SuppressWarnings("javadoc")

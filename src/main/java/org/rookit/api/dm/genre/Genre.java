@@ -21,6 +21,8 @@
  ******************************************************************************/
 package org.rookit.api.dm.genre;
 
+import java.util.Optional;
+
 import org.mongodb.morphia.annotations.Entity;
 import org.rookit.api.dm.play.able.Playable;
 
@@ -33,7 +35,7 @@ public interface Genre extends Playable, Comparable<Genre>, GenreSetter<Void> {
 	
 	String getName();
 	
-	String getDescription();
+	Optional<String> getDescription();
 
 	@Override
 	default int compareTo(Genre o) {

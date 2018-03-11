@@ -1,7 +1,7 @@
 package org.rookit.api.dm.artist;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * @author Joao
@@ -34,7 +34,15 @@ public interface ArtistSetter<T> {
 
 	T addAlias(String alias);
 	
-	T setAliases(Set<String> aliases);
+	T addAliases(Collection<String> aliases);
+	
+	T removeAlias(String alias);
+	
+	T removeAliases(Collection<String> aliases);
+	
+	T clearAliases();
+	
+	T setAliases(Collection<String> aliases);
 
 	T setBeginDate(LocalDate beginDate);
 

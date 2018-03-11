@@ -25,6 +25,7 @@ import static org.rookit.api.dm.artist.ArtistFields.*;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
@@ -82,24 +83,24 @@ public interface Artist extends Genreable, Playable, Comparable<Artist>, ArtistS
 	 * 
 	 * @return set of artists related to this artist
 	 */
-	public Iterable<Artist> getRelatedArtists();
+	public Collection<Artist> getRelatedArtists();
 
 	/**
 	 * Returns the origin of this artist (location where the artist came from)
 	 * 
 	 * @return the artist's origin
 	 */
-	public String getOrigin();
+	public Optional<String> getOrigin();
 
 	public Collection<String> getAliases();
 
-	public LocalDate getBeginDate();
+	public Optional<LocalDate> getBeginDate();
 
-	public LocalDate getEndDate();
+	public Optional<LocalDate> getEndDate();
 
-	public String getIPI();
+	public Optional<String> getIPI();
 
-	public String getISNI();
+	public Optional<String> getISNI();
 
 	public BiStream getPicture();
 }

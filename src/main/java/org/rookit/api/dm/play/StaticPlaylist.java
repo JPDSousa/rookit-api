@@ -32,17 +32,17 @@ public interface StaticPlaylist extends Playlist, PlaylistSetter<Void> {
 	
 	int size();
 	
-	boolean add(Track track);
+	boolean addTrack(Track track);
 
-	boolean addAll(Collection<? extends Track> tracks);
+	boolean addTracks(Collection<? extends Track> tracks);
 
 	boolean isEmpty();
 
 	boolean contains(Track o);
 
-	boolean remove(Track o);
+	boolean removeTrack(Track o);
 
-	boolean removeAll(Collection<? extends Track> c);
+	boolean removeTracks(Collection<? extends Track> c);
 
 	void clear();
 	

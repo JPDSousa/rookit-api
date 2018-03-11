@@ -21,14 +21,12 @@
  ******************************************************************************/
 package org.rookit.api.dm.artist;
 
+import java.util.Collection;
+
 @SuppressWarnings("javadoc")
-public interface GroupArtist extends Artist {
+public interface GroupArtist extends Artist, GroupArtistSetter<Void> {
 	
 	public TypeGroup getGroupType();
-	public void setGroupType(TypeGroup type);
-	
-	public Iterable<Musician> getMembers();
-	public void setMembers(Iterable<Musician> members);
-	public void addMember(Musician member);
+	public Collection<Musician> getMembers();
 
 }

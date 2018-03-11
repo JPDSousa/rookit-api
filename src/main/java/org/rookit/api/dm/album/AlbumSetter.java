@@ -2,7 +2,7 @@ package org.rookit.api.dm.album;
 
 import java.nio.file.Files;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.Collection;
 
 import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.track.Track;
@@ -32,21 +32,27 @@ public interface AlbumSetter<T> {
 	 */
 	T addArtist(Artist artist);
 	
-	/**
-	 * Sets the set of album author's, overwriting any previous data.
-	 * 
-	 * @param artists album author's
-	 * @return object to return
-	 */
-	T setArtists(Set<Artist> artists);
-
-	default T addTrack(TrackSlot track) {
-		return addTrack(track.getTrack(), track.getNumber(), track.getDisc());
+	T addArtists(Collection<Artist> artists);
+	
+	T removeArtist(Artist artist);
+	
+	T removeArtists(Collection<Artist> artists);
+	
+	default T addTrack(TrackSlot slot) {
+		return slot.getTrack()
+				.map(track -> addTrack(track, slot.getNumber(), slot.getDisc()))
+				.orElseThrow(() -> new IllegalArgumentException("The slot is empty."));
 	}
 
-	T addTrack(Track track, Integer i, String discName);
+	T addTrack(Track track, int i, String discName);
 	
 	T addTrackLast(Track track, String discName);
+	
+	T removeTrack(Track track);
+	
+	T removeTrack(int number, String disc);
+	
+	T removeAllTracks();
 	
 	/**
 	 * Sets a new release date for the album. The old

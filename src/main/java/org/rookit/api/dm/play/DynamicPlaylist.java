@@ -1,9 +1,9 @@
 package org.rookit.api.dm.play;
 
+import java.util.Optional;
+
 import org.rookit.api.dm.track.audio.AudioFeature;
 import org.rookit.api.storage.queries.TrackQuery;
-
-import com.google.common.base.Optional;
 
 @SuppressWarnings("javadoc")
 public interface DynamicPlaylist extends AudioFeature, Playlist, PlaylistSetter<Void> {

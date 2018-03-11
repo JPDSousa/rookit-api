@@ -29,9 +29,9 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
@@ -40,14 +40,13 @@ import org.mongodb.morphia.annotations.IndexOptions;
 import org.mongodb.morphia.annotations.Indexes;
 import org.mongodb.morphia.utils.IndexType;
 import org.rookit.api.bistream.BiStream;
+import org.rookit.api.dm.album.factory.AlbumFactory;
 import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.genre.Genre;
 import org.rookit.api.dm.genre.Genreable;
 import org.rookit.api.dm.play.able.Playable;
 import org.rookit.api.dm.track.Track;
 import org.rookit.utils.DurationUtils;
-
-import com.google.common.base.Optional;
 
 /**
  * Represents an album of tracks.
@@ -171,7 +170,7 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 	 * 
 	 * @return release date of the album.
 	 */
-	LocalDate getReleaseDate();
+	Optional<LocalDate> getReleaseDate();
 
 	/**
 	 * Returns the total duration of the disc in seconds. The length
@@ -234,12 +233,14 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 
 		return getTracks().stream()
 				.map(TrackSlot::getTrack)
+				.filter(Optional::isPresent)
+				.map(Optional::get)
 				.filter(track::equals)
 				.findFirst()
 				.isPresent();
 	}
 
-	default boolean contains(TrackSlot slot) {
+	default boolean contains(final TrackSlot slot) {
 		return contains(slot.getDisc(), slot.getNumber());
 	}
 
@@ -261,11 +262,11 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 	TypeAlbum getAlbumType();
 
 	default Optional<Integer> getTrackNumber(final Track track) {
-		return getSlot(track).transform(TrackSlot::getNumber);
+		return getSlot(track).map(TrackSlot::getNumber);
 	}
 
 	default Optional<String> getTrackDisc(final Track track) {
-		return getSlot(track).transform(TrackSlot::getDisc);
+		return getSlot(track).map(TrackSlot::getDisc);
 	}
 
 	@Override
@@ -279,16 +280,18 @@ public interface Album extends Genreable, Playable, Comparable<Album>, AlbumSett
 	default Optional<TrackSlot> getSlot(final Track track) {
 		Objects.requireNonNull(track, "Track cannot be null");
 
-		return Optional.fromJavaUtil(
-				getTracks().stream()
-				.filter(trackSlot -> trackSlot.getTrack().equals(track))
-				.findFirst());
+		return getTracks().stream()
+				.filter(slot -> !slot.isEmpty())
+				.filter(trackSlot -> trackSlot.getTrack().get().equals(track))
+				.findFirst();
 	}
 
 	@Override
 	default Collection<Genre> getAllGenres() {
 		final Set<Genre> allGenres = getTracks().stream()
 				.map(TrackSlot::getTrack)
+				.filter(Optional::isPresent)
+				.map(Optional::get)
 				.map(Track::getGenres)
 				.flatMap(Collection::stream)
 				.collect(Collectors.toSet());

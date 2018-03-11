@@ -21,12 +21,14 @@
  ******************************************************************************/
 package org.rookit.api.dm.artist;
 
+import java.util.Optional;
+
 @SuppressWarnings("javadoc")
 public interface Musician extends Artist {
 
-	TypeGender getGender();
+	Optional<TypeGender> getGender();
 	void setGender(TypeGender gender);
 	
-	String getFullName();
+	Optional<String> getFullName();
 	void setFullName(String fullName);
 }

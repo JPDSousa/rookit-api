@@ -24,6 +24,7 @@ package org.rookit.api.dm.track;
 import static org.rookit.api.dm.track.TrackFields.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
@@ -36,8 +37,6 @@ import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.genre.Genreable;
 import org.rookit.api.dm.play.able.Playable;
 import org.rookit.api.dm.track.audio.AudioFeature;
-
-import com.google.common.base.Optional;
 
 @SuppressWarnings("javadoc")
 @Entity("Track")
@@ -82,4 +81,5 @@ public interface Track extends AudioFeature, Playable, Genreable, Comparable<Tra
 
 	@Override
 	int hashCode();
+	
 }

@@ -1,5 +1,7 @@
 package org.rookit.api.dm.album;
 
+import java.util.Optional;
+
 import org.rookit.api.dm.track.Track;
 
 @SuppressWarnings("javadoc")
@@ -9,7 +11,7 @@ public interface TrackSlot {
 
 	int getNumber();
 
-	Track getTrack();
+	Optional<Track> getTrack();
 	
 	boolean isEmpty();
 }

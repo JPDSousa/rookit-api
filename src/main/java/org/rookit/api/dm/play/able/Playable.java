@@ -23,12 +23,11 @@ package org.rookit.api.dm.play.able;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.rookit.api.dm.MetadataHolder;
 import org.rookit.api.dm.play.StaticPlaylist;
 import org.rookit.api.storage.DBManager;
-
-import com.google.common.base.Optional;
 
 @SuppressWarnings("javadoc")
 public interface Playable extends PlayableSetter<Void>, MetadataHolder {
