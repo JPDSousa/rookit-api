@@ -1,27 +1,29 @@
-package org.rookit.api.dm.track;
+
+package org.rookit.api.dm.track.key;
 
 import java.util.Collection;
-import java.util.Set;
 
 import org.rookit.api.dm.artist.Artist;
+import org.rookit.api.dm.track.Track;
+import org.rookit.api.dm.track.TypeVersion;
 
 @SuppressWarnings("javadoc")
-public interface VersionTrackSetter<T> {
+public interface VersionTrackKeySetter<T> {
 
-	T addVersionArtist(Artist extraArtist);
+    T addVersionArtists(Collection<Artist> extraArtists);
 
-	T addVersionArtists(Collection<Artist> extraArtists);
+    T clearVersionArtists();
 
-	T setVersionArtists(Set<Artist> artists);
+    T removeVersionArtists(Collection<Artist> artists);
 
-	T removeVersionArtist(Artist artist);
+    T resetVersionToken();
 
-	T removeVersionArtists(Collection<Artist> artists);
+    T setOriginal(Track original);
 
-	T clearVersionArtists();
+    T setVersionArtists(Collection<Artist> artists);
 
-	T setVersionToken(String versionToken);
+    T setVersionToken(String versionToken);
 
-	T resetVersionToken();
+    T setVersionType(TypeVersion versionType);
 
 }

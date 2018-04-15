@@ -1,14 +1,18 @@
+
 package org.rookit.api.bistream;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 
 @SuppressWarnings("javadoc")
-public interface BiStream {
+public interface BiStream extends Serializable {
 
-	InputStream toInput();
-	
-	OutputStream toOutput();
-	
-	boolean isEmpty();
+    void clear();
+
+    boolean isEmpty();
+
+    InputStream toInput();
+
+    OutputStream toOutput();
 }

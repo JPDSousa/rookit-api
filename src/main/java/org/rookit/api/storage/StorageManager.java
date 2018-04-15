@@ -1,16 +1,16 @@
 /*******************************************************************************
  * Copyright (C) 2017 Joao Sousa
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.storage;
 
 import java.io.Closeable;
@@ -45,51 +46,67 @@ import org.rookit.api.storage.update.TrackUpdateQuery;
 import org.rookit.api.storage.utils.Order;
 
 @SuppressWarnings("javadoc")
-public interface DBManager extends Closeable{
-	
-	String getName();
-	
-	void reset();
-	
-	void init();
-	void clear();
-	
-	void addAlbum(Album album);
-	void addGenre(Genre genre);
-	void addTrack(Track track);
-	void addArtist(Artist artist);
-	void addPlaylist(Playlist playlist);
-	
-	void replaceAlbum(Album album);
-	AlbumUpdateQuery updateAlbum();
-	void replaceGenre(Genre genre);
-	GenreUpdateQuery updateGenre();
-	void replaceTrack(Track track);
-	TrackUpdateQuery updateTrack();
-	void replaceArtist(Artist artist);
-	ArtistUpdateQuery updateArtist();
-	void replacePlaylist(Playlist playlist);
-	PlaylistUpdateQuery updatePlaylist();
-	void updateIgnored(IgnoredField value);
-	void updateTrackFormat(TrackFormat value);
-	
-	ArtistQuery getArtists();
-	GenreQuery getGenres();
-	TrackQuery getTracks();
-	AlbumQuery getAlbums();
-	PlaylistQuery getPlaylists();
-	
-	Order newOrder();
+public interface StorageManager extends Closeable {
 
-	int getIgnoredOccurrences(String value);
-	int getTrackFormatOccurrences(String value);
-	Stream<String> streamTrackFormats();
-	
-	RookitFactories getFactories();
-	
-	@Override
-	boolean equals(Object object);
-	
-	@Override
-	int hashCode();
+    void addAlbum(Album album);
+
+    void addArtist(Artist artist);
+
+    void addGenre(Genre genre);
+    
+    void addPlaylist(Playlist playlist);
+
+    void addTrack(Track track);
+    
+    void clear();
+    
+    AlbumQuery getAlbums();
+    
+    ArtistQuery getArtists();
+
+    RookitFactories getFactories();
+    
+    GenreQuery getGenres();
+    
+    int getIgnoredOccurrences(String value);
+    
+    String getName();
+    
+    PlaylistQuery getPlaylists();
+    
+    int getTrackFormatOccurrences(String value);
+    
+    TrackQuery getTracks();
+    
+    void init();
+    
+    Order newOrder();
+    
+    void replaceAlbum(Album album);
+    
+    void replaceArtist(Artist artist);
+
+    void replaceGenre(Genre genre);
+    
+    void replacePlaylist(Playlist playlist);
+    
+    void replaceTrack(Track track);
+    
+    void reset();
+    
+    Stream<String> streamTrackFormats();
+
+    AlbumUpdateQuery updateAlbum();
+
+    ArtistUpdateQuery updateArtist();
+    
+    GenreUpdateQuery updateGenre();
+    
+    void updateIgnored(IgnoredField value);
+
+    PlaylistUpdateQuery updatePlaylist();
+
+    TrackUpdateQuery updateTrack();
+
+    void updateTrackFormat(TrackFormat value);
 }

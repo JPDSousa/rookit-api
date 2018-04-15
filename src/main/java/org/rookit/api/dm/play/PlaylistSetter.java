@@ -1,8 +1,9 @@
+
 package org.rookit.api.dm.play;
 
 @SuppressWarnings("javadoc")
 public interface PlaylistSetter<T> {
 
-	T setImage(byte[] image);
-	
+    T setImage(byte[] image);
+
 }

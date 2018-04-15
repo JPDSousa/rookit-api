@@ -1,15 +1,15 @@
+
 package org.rookit.api.dm;
 
 import java.util.Map;
 
 @SuppressWarnings("javadoc")
-public interface MetadataHolder extends RookitModel {
-	
-	String EXTERNAL_META = "external_meta";
+public interface MetadataHolder extends RookitModel, MetadataHolderSetter<Void> {
 
-	Map<String, Object> getExternalMetadata(String key);
-	void putExternalMetadata(String key, Map<String, Object> value);
+    String EXTERNAL_META = "external_meta";
 
-	Map<String, Map<String, Object>> getExternalMetadata();
-	
+    Map<String, Map<String, Object>> getExternalMetadata();
+    
+    Map<String, Object> getExternalMetadata(String key);
+
 }

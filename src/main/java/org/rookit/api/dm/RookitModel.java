@@ -1,20 +1,20 @@
+
 package org.rookit.api.dm;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.bson.types.ObjectId;
 
 @SuppressWarnings("javadoc")
-public interface RookitModel {
-	
-	String ID = "_id";
+public interface RookitModel extends RookitModelSetter<Void>, Serializable {
 
-	ObjectId getId();
+    String ID = "_id";
 
-	String getIdAsString();
+    ObjectId getId();
 
-	void setId(final ObjectId id);
+    String getIdAsString();
 
-	LocalDateTime getStorageTime();
+    LocalDateTime getStorageTime();
 
 }

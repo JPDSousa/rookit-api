@@ -1,3 +1,4 @@
+
 package org.rookit.api.dm.track;
 
 import java.util.Collection;
@@ -7,34 +8,38 @@ import org.rookit.api.dm.artist.Artist;
 @SuppressWarnings("javadoc")
 public interface TrackSetter<T> {
 
-	T setTitle(String title);
-	T setTitle(TrackTitle title);
+    T addFeature(Artist artist);
 
-	T setMainArtists(Collection<Artist> artists);
-	T addMainArtist(Artist artist);
-	T addMainArtists(Collection<Artist> artists);
-	T removeMainArtist(Artist artist);
-	T removeMainArtists(Collection<Artist> artists);
+    T addFeatures(Collection<Artist> features);
+    
+    T addProducer(Artist producer);
+    
+    T addProducers(Collection<Artist> producers);
+    
+    T clearFeatures();
+    
+    T clearProducers();
+    
+    T removeFeature(Artist artist);
 
-	T setFeatures(Collection<Artist> features);
-	T addFeature(Artist artist);
-	T addFeatures(Collection<Artist> features);
-	T removeFeature(Artist artist);
-	T removeFeatures(Collection<Artist> features);
-	T clearFeatures();
+    T removeFeatures(Collection<Artist> features);
+    
+    T removeProducer(Artist producer);
 
-	T setHiddenTrack(String hiddenTrack);
-	T resetHiddenTrack();
+    T removeProducers(Collection<Artist> producers);
+    
+    T resetHiddenTrack();
+    
+    T setAudioContent(byte[] audioContent);
+    
+    T setExplicit(boolean explicit);
+    
+    T setFeatures(Collection<Artist> features);
+    
+    T setHiddenTrack(String hiddenTrack);
 
-	T addProducer(Artist producer);
-	T addProducers(Collection<Artist> producers);
-	T setProducers(Collection<Artist> producer);
-	T removeProducer(Artist producer);
-	T removeProducers(Collection<Artist> producers);
-	T clearProducers();
-	
-	T setLyrics(String lyrics);
+    T setLyrics(String lyrics);
 
-	T setExplicit(boolean explicit);
+    T setProducers(Collection<Artist> producers);
 
 }

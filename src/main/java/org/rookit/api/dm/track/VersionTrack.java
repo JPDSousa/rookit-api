@@ -1,19 +1,22 @@
+
 package org.rookit.api.dm.track;
 
 import java.util.Collection;
-import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.rookit.api.dm.artist.Artist;
 
 @SuppressWarnings("javadoc")
-public interface VersionTrack extends Track, VersionTrackSetter<Void> {
+public interface VersionTrack extends Track {
 
-	Track getOriginal();
+    String NO_VERSION_TOKEN = StringUtils.EMPTY;
 
-	TypeVersion getVersionType();
+    Track getOriginal();
 
-	Collection<Artist> getVersionArtists();
+    Collection<Artist> getVersionArtists();
 
-	Optional<String> getVersionToken();
+    String getVersionToken();
+
+    TypeVersion getVersionType();
 
 }

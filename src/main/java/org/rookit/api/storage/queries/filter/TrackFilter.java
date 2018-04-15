@@ -1,3 +1,4 @@
+
 package org.rookit.api.storage.queries.filter;
 
 import java.util.regex.Pattern;
@@ -8,32 +9,37 @@ import org.rookit.api.dm.track.Track;
 
 @SuppressWarnings("javadoc")
 public interface TrackFilter<Q extends TrackFilter<Q>> extends GenreableFilter<Q>, AudioFeaturesFilter<Q> {
-	
-	Q withTitle(String title);
-	Q withTitle(Pattern regex);
-	
-	Q withMainArtist(Artist artist);
-	
-	Q withFeature(Artist artist);
-	
-	Q withProducer(Artist artist);
-	
-	Q withLyrics(String lyrics);
-	Q withLyrics(Pattern regex);
-	
-	Q withExplicitLyrics(boolean explicit);
-	
-	Q withOriginal(Track track);
-	Q withOriginal(ObjectId id);
 
-	Q withHiddenTrack(String hiddenTrack);
-	Q withHiddenTrack(Pattern regex);
+    Q withExplicitLyrics(boolean explicit);
+    
+    Q withFeature(Artist artist);
 
-	Q withVersionArtist(Artist artist);
-	
-	Q withVersionToken(String token);
-	Q withVersionToken(Pattern regex);
-	
-	Q withPath(boolean isPathPresent);
+    Q withHiddenTrack(Pattern regex);
+
+    Q withHiddenTrack(String hiddenTrack);
+
+    Q withLyrics(Pattern regex);
+
+    Q withLyrics(String lyrics);
+    
+    Q withMainArtist(Artist artist);
+
+    Q withOriginal(ObjectId id);
+
+    Q withOriginal(Track track);
+    
+    Q withPath(boolean isPathPresent);
+
+    Q withProducer(Artist artist);
+    
+    Q withTitle(Pattern regex);
+
+    Q withTitle(String title);
+
+    Q withVersionArtist(Artist artist);
+    
+    Q withVersionToken(Pattern regex);
+
+    Q withVersionToken(String token);
 
 }

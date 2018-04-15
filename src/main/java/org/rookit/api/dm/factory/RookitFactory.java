@@ -1,12 +1,17 @@
+
 package org.rookit.api.dm.factory;
 
 import java.util.Map;
 
-@SuppressWarnings("javadoc")
-public interface RookitFactory<T> {
+import org.rookit.api.dm.key.Key;
 
-	T createEmpty();
-	
-	T create(Map<String, Object> data);
+@SuppressWarnings("javadoc")
+public interface RookitFactory<T, K extends Key> {
+
+    T create(Map<String, Object> data);
+    
+    T create(K key);
+
+    T createEmpty();
 
 }

@@ -1,3 +1,4 @@
+
 package org.rookit.api.dm.factory;
 
 import org.rookit.api.dm.RookitModel;
@@ -10,16 +11,16 @@ import org.rookit.api.dm.track.factory.TrackFactory;
 @SuppressWarnings("javadoc")
 public interface RookitFactories {
 
-	<T extends RookitModel> RookitFactory<T> getFactory(Class<T> clazz);
-	
-	GenreFactory getGenreFactory();
-	
-	ArtistFactory getArtistFactory();
-	
-	AlbumFactory getAlbumFactory();
-	
-	TrackFactory getTrackFactory();
-	
-	PlaylistFactory getPlaylistFactory();
-	
+    AlbumFactory getAlbumFactory();
+
+    ArtistFactory getArtistFactory();
+
+    <T extends RookitModel> RookitFactory<T, ?> getFactory(Class<T> clazz);
+
+    GenreFactory getGenreFactory();
+
+    PlaylistFactory getPlaylistFactory();
+
+    TrackFactory getTrackFactory();
+
 }

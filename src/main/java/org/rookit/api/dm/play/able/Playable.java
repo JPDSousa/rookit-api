@@ -1,16 +1,16 @@
 /*******************************************************************************
  * Copyright (C) 2017 Joao Sousa
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.dm.play.able;
 
 import java.time.Duration;
@@ -27,28 +28,28 @@ import java.util.Optional;
 
 import org.rookit.api.dm.MetadataHolder;
 import org.rookit.api.dm.play.StaticPlaylist;
-import org.rookit.api.storage.DBManager;
+import org.rookit.api.storage.StorageManager;
 
 @SuppressWarnings("javadoc")
 public interface Playable extends PlayableSetter<Void>, MetadataHolder {
-	
-	String PLAYS = "plays";
-	String LAST_PLAYED = "lastPlayed";
-	String SKIPPED = "skipped";
-	String LAST_SKIPPED = "lastSkipped";
-	String DURATION = "duration";
 
-	long getPlays();
-	
-	Optional<LocalDate> getLastPlayed();
-	
-	long getSkipped();
-	
-	Optional<LocalDate> getLastSkipped();
-	
-	Optional<Duration> getDuration();
-	
-	StaticPlaylist freeze(DBManager db);
-	
-	StaticPlaylist freeze(DBManager db, int limit);
+    String PLAYS = "plays";
+    String LAST_PLAYED = "lastPlayed";
+    String SKIPPED = "skipped";
+    String LAST_SKIPPED = "lastSkipped";
+    String DURATION = "duration";
+
+    StaticPlaylist freeze(StorageManager db);
+
+    StaticPlaylist freeze(StorageManager db, int limit);
+
+    Optional<Duration> getDuration();
+
+    Optional<LocalDate> getLastPlayed();
+
+    Optional<LocalDate> getLastSkipped();
+
+    long getPlays();
+
+    long getSkipped();
 }

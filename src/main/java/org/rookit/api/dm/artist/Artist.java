@@ -1,16 +1,16 @@
 /*******************************************************************************
  * Copyright (C) 2017 Joao Sousa
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,9 +19,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.dm.artist;
 
-import static org.rookit.api.dm.artist.ArtistFields.*;
+import static org.rookit.api.dm.artist.ArtistFields.ISNI;
+import static org.rookit.api.dm.artist.ArtistFields.NAME;
+import static org.rookit.api.dm.artist.ArtistFields.TYPE;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -37,70 +40,59 @@ import org.rookit.api.bistream.BiStream;
 import org.rookit.api.dm.genre.Genreable;
 import org.rookit.api.dm.play.able.Playable;
 
-/**
- * Represents a musical artist.
- * 
- * A musical artist is the entity that creates both albums and tracks, being related to albums as
- * an album artist (author) or to tracks as main artist, feature artist, or even as remix artist or
- * cover artist.
- */
-//@SmofIndexes({
-//	@SmofIndex(fields = {
-//			@SmofIndexField(name = NAME, type = IndexType.ASCENDING),
-//			@SmofIndexField(name = TYPE, type = IndexType.ASCENDING)}, 
-//			unique=true),
-//	@SmofIndex(fields = {@SmofIndexField(name = NAME, type = IndexType.TEXT)}),
-//})
+@SuppressWarnings("javadoc")
 @Indexes({
-	@Index(fields = {
-			@Field(value = NAME, type = IndexType.ASC),
-			@Field(value = TYPE, type = IndexType.ASC),
-			@Field(value = ISNI, type = IndexType.ASC)
-	}, options = @IndexOptions(unique = true)),
-	@Index(fields = @Field(value = NAME, type = IndexType.TEXT))
+        @Index(fields = {
+                @Field(value = NAME, type = IndexType.ASC),
+                @Field(value = TYPE, type = IndexType.ASC),
+                @Field(value = ISNI, type = IndexType.ASC)
+        }, options = @IndexOptions(unique = true)),
+        @Index(fields = @Field(value = NAME, type = IndexType.TEXT))
 })
-//TODO is it possible to turn this into Artist.class.getName() somehow??
-@Entity(value="Artist")
+// TODO is it possible to turn this into Artist.class.getName() somehow??
+@Entity(value = "Artist")
 public interface Artist extends Genreable, Playable, Comparable<Artist>, ArtistSetter<Void> {
 
-	/**
-	 * String representation of an unknown artist. This constant may be used only
-	 * when the artist of a track or album is required but unknown.
-	 */
-	String UNKNOWN_ARTISTS = "Unknown Artists";
+    /**
+     * String representation of an unknown artist. This constant may be used
+     * only when the artist of a track or album is required but unknown.
+     */
+    String UNKNOWN_ARTISTS = "Unknown Artists";
 
-	public TypeArtist getType();
+    String UNKNOWN_ISNI = "_isni_";
 
-	/**
-	 * Returns the artist name
-	 * 
-	 * @return artist name as a string.
-	 */
-	public String getName();
+    public Collection<String> getAliases();
 
-	/**
-	 * Returns the set of artists related to this artist
-	 * 
-	 * @return set of artists related to this artist
-	 */
-	public Collection<Artist> getRelatedArtists();
+    public Optional<LocalDate> getBeginDate();
 
-	/**
-	 * Returns the origin of this artist (location where the artist came from)
-	 * 
-	 * @return the artist's origin
-	 */
-	public Optional<String> getOrigin();
+    public Optional<LocalDate> getEndDate();
 
-	public Collection<String> getAliases();
+    public Optional<String> getIPI();
 
-	public Optional<LocalDate> getBeginDate();
+    public String getISNI();
 
-	public Optional<LocalDate> getEndDate();
+    /**
+     * Returns the artist name
+     * 
+     * @return artist name as a string.
+     */
+    public String getName();
 
-	public Optional<String> getIPI();
+    /**
+     * Returns the origin of this artist (location where the artist came from)
+     * 
+     * @return the artist's origin
+     */
+    public Optional<String> getOrigin();
 
-	public Optional<String> getISNI();
+    public BiStream getPicture();
 
-	public BiStream getPicture();
+    /**
+     * Returns the set of artists related to this artist
+     * 
+     * @return set of artists related to this artist
+     */
+    public Collection<Artist> getRelatedArtists();
+
+    public TypeArtist getType();
 }

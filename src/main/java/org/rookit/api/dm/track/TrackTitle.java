@@ -1,16 +1,16 @@
 /*******************************************************************************
  * Copyright (C) 2017 Joao Sousa
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,140 +19,134 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.dm.track;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import java.util.Collection;
+import java.util.Objects;
+import java.util.Optional;
+
+import javax.annotation.Generated;
 
 import org.rookit.api.dm.artist.Artist;
 import org.rookit.utils.print.PrintUtils;
 import org.rookit.utils.print.TypeFormat;
 
 @SuppressWarnings("javadoc")
-public class TrackTitle {
+public final class TrackTitle {
 
-	private final String title;
+    private final String title;
 
-	private String artists;
-	private String extras;
-	private String feats;
+    private String artists;
+    private String extras;
+    private String feats;
 
-	private String tokens;
-	private String hiddenTrack;
+    private String tokens;
+    private String hiddenTrack;
 
+    public TrackTitle(final String title) {
+        checkArgument(Objects.nonNull(title));
+        this.title = title;
+    }
 
-	public TrackTitle(final String title) {
-		this.title = title;
-	}
+    public TrackTitle appendArtists(final Collection<Artist> artists) {
+        checkArgument(Objects.nonNull(artists));
+        this.artists = PrintUtils.getIterableAsString(artists, TypeFormat.TITLE, Artist.UNKNOWN_ARTISTS);
+        return this;
+    }
 
-	public TrackTitle appendHiddenTrack(String hiddenTrack){
-		this.hiddenTrack = hiddenTrack;
-		return this;
-	}
+    public TrackTitle appendExtras(final String extras) {
+        checkArgument(Objects.nonNull(extras));
+        this.extras = extras;
+        return this;
+    }
 
-	public TrackTitle appendArtists(Collection<Artist> artists){
-		this.artists = PrintUtils.getIterableAsString(artists, TypeFormat.TITLE, Artist.UNKNOWN_ARTISTS);
-		return this;
-	}
+    public TrackTitle appendFeats(final Collection<Artist> artists) {
+        checkArgument(Objects.nonNull(artists));
+        this.feats = PrintUtils.getIterableAsString(artists, TypeFormat.TITLE);
+        return this;
+    }
 
-	public TrackTitle appendExtras(String extras){
-		this.extras = extras;
-		return this;
-	}
+    public TrackTitle appendHiddenTrack(final String hiddenTrack) {
+        checkArgument(Objects.nonNull(hiddenTrack));
+        this.hiddenTrack = hiddenTrack;
+        return this;
+    }
 
-	public TrackTitle appendFeats(Collection<Artist> artists){
-		this.feats = PrintUtils.getIterableAsString(artists, TypeFormat.TITLE);
-		return this;
-	}
+    @Override
+    @Generated(value = "GuavaEclipsePlugin")
+    public boolean equals(final Object object) {
+        if (object instanceof TrackTitle) {
+            final TrackTitle that = (TrackTitle) object;
+            return Objects.equals(this.title, that.title);
+        }
+        return false;
+    }
 
-	@Override
-	public String toString() {
-		final StringBuilder builder = new StringBuilder(32);
-		//artists
-		if(artists != null){
-			if(!artists.isEmpty()){
-				builder.append(artists);
-			}
-			else{
-				builder.append(Artist.UNKNOWN_ARTISTS);
-			}
-			builder.append(" - ");
-		}
-		//title
-		builder.append(title);
-		//hidden track
-		if(hiddenTrack != null && !hiddenTrack.isEmpty()){
-			builder.append(" (+ ").append(hiddenTrack).append(')');
-		}
-		//feats
-		if(feats != null && !feats.isEmpty()){
-			builder.append(" (feat. ");
-			builder.append(feats);
-			builder.append(')');
-		}
-		//add tokens
-		if(tokens != null && !tokens.isEmpty()){
-			builder.append(" (").append(tokens).append(')');
-		}
-		//extras
-		if(extras != null && !extras.isEmpty()){ 
-			builder.append(" (");
-			builder.append(extras);
-			builder.append(')');
-		}
+    public Optional<String> getArtists() {
+        return Optional.ofNullable(this.artists);
+    }
 
-		return builder.toString();
-	}
+    public Optional<String> getExtras() {
+        return Optional.ofNullable(this.extras);
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public Optional<String> getFeats() {
+        return Optional.ofNullable(this.feats);
+    }
 
-	public String getArtists() {
-		return artists;
-	}
+    public Optional<String> getHiddenTrack() {
+        return Optional.ofNullable(this.hiddenTrack);
+    }
 
-	public String getExtras() {
-		return extras;
-	}
+    public String getTitle() {
+        return this.title;
+    }
 
-	public String getFeats() {
-		return feats;
-	}
+    @Override
+    @Generated(value = "GuavaEclipsePlugin")
+    public int hashCode() {
+        return Objects.hash(Integer.valueOf(super.hashCode()), this.title);
+    }
 
-	public String getTokens() {
-		return tokens;
-	}
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder(32);
+        // artists
+        if (this.artists != null) {
+            if (!this.artists.isEmpty()) {
+                builder.append(this.artists);
+            } else {
+                builder.append(Artist.UNKNOWN_ARTISTS);
+            }
+            builder.append(" - ");
+        }
+        // title
+        builder.append(this.title);
+        // hidden track
+        if (this.hiddenTrack != null && !this.hiddenTrack.isEmpty()) {
+            builder.append(" (+ ").append(this.hiddenTrack).append(')');
+        }
+        // feats
+        if (this.feats != null && !this.feats.isEmpty()) {
+            builder.append(" (feat. ");
+            builder.append(this.feats);
+            builder.append(')');
+        }
+        // add tokens
+        if (this.tokens != null && !this.tokens.isEmpty()) {
+            builder.append(" (").append(this.tokens).append(')');
+        }
+        // extras
+        if (this.extras != null && !this.extras.isEmpty()) {
+            builder.append(" (");
+            builder.append(this.extras);
+            builder.append(')');
+        }
 
-	public String getHiddenTrack() {
-		return hiddenTrack;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((artists == null) ? 0 : artists.hashCode());
-		result = prime * result + ((extras == null) ? 0 : extras.hashCode());
-		result = prime * result + ((feats == null) ? 0 : feats.hashCode());
-		result = prime * result + ((hiddenTrack == null) ? 0 : hiddenTrack.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((tokens == null) ? 0 : tokens.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		TrackTitle other = (TrackTitle) obj;
-		return toString().equals(other.toString());
-	}
+        return builder.toString();
+    }
 
 }

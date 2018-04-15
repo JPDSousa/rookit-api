@@ -1,17 +1,19 @@
-package org.rookit.api.dm.album;
 
+package org.rookit.api.dm.album.slot;
+
+import java.io.Serializable;
 import java.util.Optional;
 
 import org.rookit.api.dm.track.Track;
 
 @SuppressWarnings("javadoc")
-public interface TrackSlot {
+public interface TrackSlot extends Serializable {
 
-	String getDisc();
+    String getDisc();
 
-	int getNumber();
+    int getNumber();
 
-	Optional<Track> getTrack();
-	
-	boolean isEmpty();
+    Optional<Track> getTrack();
+
+    boolean isEmpty();
 }

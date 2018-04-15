@@ -1,3 +1,4 @@
+
 package org.rookit.api.storage.queries.filter;
 
 import java.time.LocalDate;
@@ -11,33 +12,37 @@ import org.rookit.api.dm.artist.TypeGroup;
 
 @SuppressWarnings("javadoc")
 public interface ArtistFilter<Q extends ArtistFilter<Q>> extends GenreableFilter<Q> {
-	
-	Q withName(String artistName);
-	Q withName(Pattern regex);
-	
-	Q withFullName(String fullName);
-	Q withFullName(Pattern regex);
-	
-	Q relatedTo(Artist artist);
-	
-	Q withAlias(String alias);
-	Q withAlias(Pattern regex);
 
-	Q withArtistType(TypeArtist type);
+    Q relatedTo(Artist artist);
+    
+    Q withAlias(Pattern regex);
 
-	Q withOrigin(String origin);
-	
-	Q withIPI(String ipi);
-	
-	Q withBeginDate(LocalDate date);
-	Q withEndDate(LocalDate date);
-	
-	Q withISNI(String isni);
-	
-	Q withGender(TypeGender gender);
-	
-	Q withGroupType(TypeGroup type);
-	
-	Q withMember(Musician member);
+    Q withAlias(String alias);
+    
+    Q withArtistType(TypeArtist type);
+
+    Q withBeginDate(LocalDate date);
+
+    Q withEndDate(LocalDate date);
+    
+    Q withFullName(Pattern regex);
+
+    Q withFullName(String fullName);
+
+    Q withGender(TypeGender gender);
+
+    Q withGroupType(TypeGroup type);
+
+    Q withIPI(String ipi);
+    
+    Q withISNI(String isni);
+
+    Q withMember(Musician member);
+
+    Q withName(Pattern regex);
+
+    Q withName(String artistName);
+
+    Q withOrigin(String origin);
 
 }

@@ -1,3 +1,4 @@
+
 package org.rookit.api.dm.artist;
 
 import java.util.Collection;
@@ -5,18 +6,16 @@ import java.util.Collection;
 @SuppressWarnings("javadoc")
 public interface GroupArtistSetter<T> {
 
-	T setGroupType(TypeGroup type);
+    T addMember(Musician member);
 
-	T setMembers(Collection<Musician> members);
+    T addMembers(Collection<Musician> members);
 
-	T addMember(Musician member);
+    T clearMembers();
 
-	T addMembers(Collection<Musician> members);
+    T removeMember(Musician member);
 
-	T removeMember(Musician member);
+    T removeMembers(Collection<Musician> members);
 
-	T removeMembers(Collection<Musician> members);
-
-	T clearMembers();
+    T setMembers(Collection<Musician> members);
 
 }

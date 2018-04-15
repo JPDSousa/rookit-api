@@ -1,37 +1,42 @@
+
 package org.rookit.api.storage.queries.filter;
 
-import org.rookit.api.dm.track.audio.TrackKey;
-import org.rookit.api.dm.track.audio.TrackMode;
-
 import com.google.common.collect.Range;
+import com.kekstudio.musictheory.Key;
 
 @SuppressWarnings("javadoc")
 public interface AudioFeaturesFilter<Q> {
 
-	Q withBPM(short bpm);
-	Q withBPM(short min, short max);
-	Q withBPM(Range<Short> range);
+    Q withAcoustic(boolean acoustic);
 
-	Q withTrackKey(TrackKey key);
+    Q withBPM(Range<Short> range);
 
-	Q withTrackMode(TrackMode mode);
+    Q withBPM(short bpm);
 
-	Q withInstrumental(boolean instrumental);
-	
-	Q withLive(boolean live);
-	
-	Q withAcoustic(boolean acoustic);
-	
-	Q withDanceability(double danceability);
-	Q withDanceability(double min, double max);
-	Q withDanceability(Range<Double> range);
-	
-	Q withEnergy(double energy);
-	Q withEnergy(double min, double max);
-	Q withEnergy(Range<Double> range);
-	
-	Q withValence(double valence);
-	Q withValence(double min, double max);
-	Q withValence(Range<Double> range);
+    Q withBPM(short min, short max);
+
+    Q withDanceability(double danceability);
+
+    Q withDanceability(double min, double max);
+
+    Q withDanceability(Range<Double> range);
+
+    Q withEnergy(double energy);
+
+    Q withEnergy(double min, double max);
+    
+    Q withEnergy(Range<Double> range);
+    
+    Q withInstrumental(boolean instrumental);
+
+    Q withLive(boolean live);
+    
+    Q withTrackKey(Key key);
+    
+    Q withValence(double valence);
+    
+    Q withValence(double min, double max);
+    
+    Q withValence(Range<Double> range);
 
 }
