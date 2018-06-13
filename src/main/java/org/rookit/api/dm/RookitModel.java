@@ -19,22 +19,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.dm;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-import org.bson.types.ObjectId;
+import java.util.Optional;
 
 @SuppressWarnings("javadoc")
-public interface RookitModel extends RookitModelSetter<Void>, Serializable {
+public interface RookitModel extends RookitModelSetter<Void> {
 
     String ID = "_id";
 
-    ObjectId getId();
-
-    String getIdAsString();
-
-    LocalDateTime getStorageTime();
+    Optional<String> getId();
 
 }

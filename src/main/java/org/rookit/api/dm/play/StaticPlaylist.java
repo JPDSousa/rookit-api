@@ -21,29 +21,17 @@
  ******************************************************************************/
 package org.rookit.api.dm.play;
 
+import org.rookit.api.dm.track.Track;
+
 import java.util.Collection;
 import java.util.stream.Stream;
 
-import org.rookit.api.dm.track.Track;
-
 @SuppressWarnings("javadoc")
-public interface StaticPlaylist extends Playlist, PlaylistSetter<Void> {
-
-    boolean addTrack(Track track);
-
-    boolean addTracks(Collection<? extends Track> tracks);
-
-    void clear();
+public interface StaticPlaylist extends Playlist, StaticPlaylistSetter<Void> {
 
     boolean contains(Track o);
 
-    Collection<Track> getTracks();
-
-    boolean isEmpty();
-
-    boolean removeTrack(Track o);
-
-    boolean removeTracks(Collection<? extends Track> c);
+    Collection<Track> tracks();
 
     int size();
 

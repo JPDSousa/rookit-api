@@ -19,13 +19,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package org.rookit.api.dm;
 
-import org.bson.types.ObjectId;
+package org.rookit.api.dm;
 
 @SuppressWarnings("javadoc")
 public interface RookitModelSetter<V> {
 
-    V setId(ObjectId id);
+    V setId(String id);
 
 }

@@ -21,19 +21,32 @@
  ******************************************************************************/
 package org.rookit.api.dm.track.key;
 
-import java.util.Collection;
-
+import org.immutables.value.Value;
 import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.key.Key;
+import org.rookit.api.dm.track.Track;
 import org.rookit.api.dm.track.TypeTrack;
+import org.rookit.api.dm.track.TypeVersion;
+
+import java.util.Collection;
+import java.util.Optional;
 
 @SuppressWarnings("javadoc")
-public interface TrackKey extends VersionTrackKey, Key {
-    
-    Collection<Artist> getMainArtists();
-    
-    TypeTrack getTrackType();
-    
-    String getTitle();
+@Value.Immutable
+public interface TrackKey extends Key {
+
+    Collection<Artist> mainArtists();
+
+    TypeTrack type();
+
+    String title();
+
+    Track original();
+
+    Optional<String> versionToken();
+
+    Collection<Artist> getVersionArtists();
+
+    TypeVersion getVersionType();
 
 }

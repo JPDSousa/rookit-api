@@ -21,19 +21,18 @@
  ******************************************************************************/
 package org.rookit.api.dm.album;
 
-import java.nio.file.Files;
-import java.time.LocalDate;
-import java.util.Objects;
-
 import org.rookit.api.dm.album.slot.TrackSlot;
 import org.rookit.api.dm.track.Track;
+
+import java.nio.file.Files;
+import java.time.LocalDate;
 
 /**
  * An interface with the album setters.
  *
  * @author Joao Sousa (jpd.sousa@campus.fct.unl.pt)
  * @param <T>
- *            return type
+ *            return release
  *
  */
 @SuppressWarnings("javadoc")
@@ -41,31 +40,25 @@ public interface AlbumSetter<T> {
 
     T addTrack(Track track, int i, String discName);
 
-    default T addTrack(final TrackSlot slot) {
-        Objects.requireNonNull(slot, "The slot cannot be null");
-
-        return slot.getTrack()
-                .map(track -> addTrack(track, slot.getNumber(), slot.getDisc()))
-                .orElseThrow(() -> new IllegalArgumentException("The slot is empty."));
-    }
+    T addTrack(final TrackSlot slot);
 
     T addTrackLast(Track track, String discName);
 
     /**
      * <b>This method is only used by {@link Track} to relocate tracks when its
-     * number and/or disc are changed. Do not use this method otherwise.</b>
+     * primitive and/or disc are changed. Do not use this method otherwise.</b>
      * 
      * This method relocates the track in the album's track list to the disc and
-     * number passed as parameter.
+     * primitive passed as parameter.
      * 
      * @param discName
-     *            source disc name
+     *            source disc official
      * @param number
-     *            source number
+     *            source primitive
      * @param newDiscName
-     *            target disc name
+     *            target disc official
      * @param newNumber
-     *            target track number
+     *            target track primitive
      * @return TODO
      * 
      */

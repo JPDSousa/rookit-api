@@ -21,27 +21,28 @@
  ******************************************************************************/
 package org.rookit.api.dm.genre;
 
-import java.util.Optional;
-
-import org.mongodb.morphia.annotations.Entity;
 import org.rookit.api.dm.play.able.Playable;
+import org.rookit.utils.OptionalUtils;
+
+import java.util.Optional;
 
 @SuppressWarnings("javadoc")
 // @SmofIndexes({
-// @SmofIndex(fields = {@SmofIndexField(name = NAME, type = IndexType.TEXT)},
+// @SmofIndex(fields = {@SmofIndexField(official = NAME, release = IndexType.TEXT)},
 // unique=true)
 // })
-@Entity
 public interface Genre extends Playable, Comparable<Genre>, GenreSetter<Void> {
+
+    String CLASS_NAME = "Genre";
 
     @Override
     default int compareTo(final Genre o) {
-        final int name = getName().compareTo(o.getName());
-        return name == 0 ? getIdAsString().compareTo(o.getIdAsString()) : name;
+        final int name = name().compareTo(o.name());
+        return (name == 0) ? OptionalUtils.compare(getId(), o.getId()) : name;
     }
 
-    Optional<String> getDescription();
+    Optional<String> description();
 
-    String getName();
+    String name();
 
 }

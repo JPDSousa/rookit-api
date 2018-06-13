@@ -19,23 +19,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.dm.artist;
+
+import com.neovisionaries.i18n.CountryCode;
 
 import java.time.LocalDate;
 import java.util.Collection;
 
 /**
- * @author Joao
+ * @author Joao Sousa (jps.liaf@gmail.com)
  *
  * @param <T>
- *            return type
+ *            return release
  */
 @SuppressWarnings("javadoc")
 public interface ArtistSetter<T> {
 
     T addAlias(String alias);
-
-    T addAliases(Collection<String> aliases);
 
     /**
      * Add the artist passed as parameter to the list of related artists. This
@@ -50,13 +51,11 @@ public interface ArtistSetter<T> {
      *            artist to relate this artist with.
      * @return object to return
      */
-    T addRelatedArtist(final Artist artist);
+    T addRelatedArtist(Artist artist);
 
     T clearAliases();
 
     T removeAlias(String alias);
-
-    T removeAliases(Collection<String> aliases);
 
     T setAliases(Collection<String> aliases);
 
@@ -73,7 +72,7 @@ public interface ArtistSetter<T> {
      *            origin to set
      * @return object to return
      */
-    T setOrigin(final String origin);
+    T setOrigin(CountryCode origin);
 
     T setPicture(byte[] picture);
 }

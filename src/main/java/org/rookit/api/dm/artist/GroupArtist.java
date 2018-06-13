@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.dm.artist;
 
 import java.util.Collection;
@@ -26,8 +27,8 @@ import java.util.Collection;
 @SuppressWarnings("javadoc")
 public interface GroupArtist extends Artist, GroupArtistSetter<Void> {
 
-    public TypeGroup getGroupType();
+    TypeGroup getGroupType();
     
-    public Collection<Musician> getMembers();
+    Collection<Musician> getMembers();
 
 }

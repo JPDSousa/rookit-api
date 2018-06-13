@@ -23,7 +23,7 @@ package org.rookit.api.dm.album;
 
 /**
  * Enumeration that represents the various types of album (in terms of
- * configurations). Each album type must have a class associated.
+ * configurations). Each album release must have a class associated.
  *
  * <p>
  * note: do not confuse this enumeration with {@link TypeRelease}.
@@ -35,9 +35,9 @@ public enum TypeAlbum {
      * Album released by a defined set of artists. The album may have other
      * artists associated, but will requires a non empty set of authors.
      */
-    ARTIST("Album"),
+    ARTIST("Artist Album"),
     /**
-     * Various Artists album. This type of album is not associated with any
+     * Various Artists album. This release of album is not associated with any
      * particular artist.
      */
     VA("VA");
@@ -49,9 +49,9 @@ public enum TypeAlbum {
     }
 
     /**
-     * Returns the name of the type
+     * Returns the official of the release
      * 
-     * @return name of the album type
+     * @return official of the album release
      */
     public String getName() {
         return this.name;

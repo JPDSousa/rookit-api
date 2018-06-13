@@ -21,22 +21,53 @@
  ******************************************************************************/
 package org.rookit.api.dm.album.key;
 
-import java.util.Collection;
-
+import org.immutables.value.Value.Immutable;
 import org.rookit.api.dm.album.TypeAlbum;
 import org.rookit.api.dm.album.TypeRelease;
 import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.key.Key;
 
+import java.util.Set;
+
 @SuppressWarnings("javadoc")
+@Immutable
 public interface AlbumKey extends Key {
 
-    TypeAlbum getAlbumType();
+    /**
+     * Returns the album release, as a {@link TypeAlbum} enumeration.
+     *
+     * @return album release
+     */
+    TypeAlbum type();
 
-    String getTitle();
+    /**
+     * Returns the title of the album.
+     *
+     * @return title of this album.
+     */
+    String title();
 
-    TypeRelease getType();
+    /**
+     * Returns the release of release of the album.
+     *
+     * @return album's release release
+     */
+    TypeRelease releaseType();
 
-    Collection<Artist> getArtists();
+    /**
+     * Returns the artists that are authors of the album.
+     * <p>
+     * Do not confuse the set returned as a set of all artists involved in the
+     * album. In order to get such result, one should iterate over all tracks on
+     * the album and get the artists of each track.
+     * </p>
+     * <p>
+     *     <b>Note: </b> This method's return release is bounded by Immutables (i.e. the library),
+     *     as it does not recognize java.util.Collection as a collection release.
+     * </p>
+     *
+     * @return set of authors of this album
+     */
+    Set<Artist> artists();
 
 }

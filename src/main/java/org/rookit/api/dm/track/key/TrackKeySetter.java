@@ -21,11 +21,11 @@
  ******************************************************************************/
 package org.rookit.api.dm.track.key;
 
-import java.util.Collection;
-
 import org.rookit.api.dm.artist.Artist;
-import org.rookit.api.dm.track.TrackTitle;
 import org.rookit.api.dm.track.TypeTrack;
+import org.rookit.api.dm.track.title.Title;
+
+import java.util.Collection;
 
 @SuppressWarnings("javadoc")
 public interface TrackKeySetter<T> {
@@ -40,7 +40,7 @@ public interface TrackKeySetter<T> {
     
     T setTitle(String title);
     
-    T setTitle(TrackTitle title);
+    T setTitle(Title title);
     
     T setTrackType(TypeTrack trackType);
 

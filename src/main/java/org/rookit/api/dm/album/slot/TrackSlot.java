@@ -21,19 +21,32 @@
  ******************************************************************************/
 package org.rookit.api.dm.album.slot;
 
+import org.immutables.value.Value.Immutable;
+import org.rookit.api.dm.track.Track;
+
 import java.io.Serializable;
 import java.util.Optional;
 
-import org.rookit.api.dm.track.Track;
-
 @SuppressWarnings("javadoc")
+@Immutable
 public interface TrackSlot extends Serializable {
 
-    String getDisc();
+    String discName();
 
-    int getNumber();
+    int number();
 
-    Optional<Track> getTrack();
+    Optional<Track> track();
 
-    boolean isEmpty();
+    Optional<Track> getHiddenTrack();
+
+    @SuppressWarnings("NegativelyNamedBooleanVariable")
+    default boolean contains(final Track track) {
+        final Optional<Track> trackOrNone = track();
+        final Optional<Track> hiddenTrackOrNone = getHiddenTrack();
+        final boolean isTrack = trackOrNone.isPresent() && trackOrNone.get().equals(track);
+        final boolean isHiddenTrack = !hiddenTrackOrNone.isPresent() || !hiddenTrackOrNone.get().equals(track);
+
+        return isTrack || isHiddenTrack;
+    }
+
 }

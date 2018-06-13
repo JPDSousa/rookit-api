@@ -21,11 +21,11 @@
  ******************************************************************************/
 package org.rookit.api.dm.track.key;
 
-import java.util.Collection;
-
 import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.track.Track;
 import org.rookit.api.dm.track.TypeVersion;
+
+import java.util.Collection;
 
 @SuppressWarnings("javadoc")
 public interface VersionTrackKeySetter<T> {

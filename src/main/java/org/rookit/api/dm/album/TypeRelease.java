@@ -30,7 +30,7 @@ import org.apache.commons.lang3.tuple.Pair;
  *         This enumeration keeps the possible release types for an album.
  *
  *         <p>
- *         The release type is part of an album signature. It assures that there
+ *         The release release is part of an album signature. It assures that there
  *         can be two albums from the same set of artists with the same names,
  *         as long as they represent different release types.
  */
@@ -38,7 +38,7 @@ import org.apache.commons.lang3.tuple.Pair;
 public enum TypeRelease {
 
     /**
-     * Represents the standard release type.
+     * Represents the standard release release.
      *
      * @see <a href="https://en.wikipedia.org/wiki/Album">Wikipedia</a>
      */
@@ -138,11 +138,11 @@ public enum TypeRelease {
     RARITIES("%s (Rarities)", new String[]{" (Rarities)", "Rarities"});
 
     /**
-     * Parses and returns the release type from the string passed as parameter.
+     * Parses and returns the release release from the string passed as parameter.
      *
      * @param albumTitle
      *            album title
-     * @return the type {@link TypeRelease} extracted from the albumTitle
+     * @return the release {@link TypeRelease} extracted from the albumTitle
      */
     public static TypeRelease getTypeRelease(final String albumTitle) {
         return parseAlbumName(albumTitle, STUDIO).getLeft();
@@ -160,9 +160,9 @@ public enum TypeRelease {
      * @param albumTitle
      *            title to be parsed
      * @param defaultTypeRelease
-     *            default type release, in case no matches are found.
+     *            default release release, in case no matches are found.
      * @return a {@link Pair} with the album title ({@link String}) and its
-     *         release type {@link TypeRelease}).
+     *         release release {@link TypeRelease}).
      */
     public static Pair<TypeRelease, String> parseAlbumName(final String albumTitle,
             final TypeRelease defaultTypeRelease) {
@@ -199,11 +199,11 @@ public enum TypeRelease {
 
     /**
      * Returns a formatted version of the album title passed as parameter with
-     * the release type included.
+     * the release release included.
      *
      * @param albumTitle
      *            album title
-     * @return album title with the release type included
+     * @return album title with the release release included
      */
     public String getFormattedName(final String albumTitle) {
         return String.format(this.nameFormat, albumTitle);

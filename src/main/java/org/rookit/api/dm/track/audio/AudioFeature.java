@@ -23,30 +23,34 @@ package org.rookit.api.dm.track.audio;
 
 import com.google.common.collect.Range;
 import com.kekstudio.musictheory.Key;
+import org.rookit.utils.optional.OptionalBoolean;
+import org.rookit.utils.optional.OptionalShort;
 
+import java.io.Serializable;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
-@SuppressWarnings("javadoc")
-public interface AudioFeature extends AudioFeatureSetter<Void> {
+@SuppressWarnings({"javadoc", "ConstantDeclaredInInterface"})
+public interface AudioFeature extends AudioFeatureSetter<Void>, Serializable {
 
-    Range<Short> RANGE_BPM = Range.openClosed(Short.valueOf((short) 0), Short.valueOf((short) 400));
-    Range<Double> RANGE_DANCEABILITY = Range.open(Double.valueOf(0.0), Double.valueOf(1.0));
-    Range<Double> RANGE_ENERGY = Range.open(Double.valueOf(0.0), Double.valueOf(1.0));
-    Range<Double> RANGE_VALENCE = Range.open(Double.valueOf(0.0), Double.valueOf(1.0));
+    Range<Short> RANGE_BPM = Range.openClosed((short) 0, (short) 400);
+    Range<Double> RANGE_DANCEABILITY = Range.open(0.0, 1.0);
+    Range<Double> RANGE_ENERGY = Range.open(0.0, 1.0);
+    Range<Double> RANGE_VALENCE = Range.open(0.0, 1.0);
 
-    Optional<Short> getBpm();
+    OptionalShort getBpm();
 
-    Optional<Double> getDanceability();
+    OptionalDouble getDanceability();
 
-    Optional<Double> getEnergy();
+    OptionalDouble getEnergy();
 
     Optional<Key> getTrackKey();
 
-    Optional<Double> getValence();
+    OptionalDouble getValence();
 
-    Optional<Boolean> isAcoustic();
+    OptionalBoolean isAcoustic();
 
-    Optional<Boolean> isInstrumental();
+    OptionalBoolean isInstrumental();
 
-    Optional<Boolean> isLive();
+    OptionalBoolean isLive();
 }

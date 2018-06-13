@@ -19,36 +19,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.dm.play.able;
 
+import org.rookit.api.dm.RookitModel;
+
 import java.time.Duration;
-import java.time.LocalDate;
 import java.util.Optional;
 
-import org.rookit.api.dm.MetadataHolder;
-import org.rookit.api.dm.play.StaticPlaylist;
-import org.rookit.api.storage.StorageManager;
-
 @SuppressWarnings("javadoc")
-public interface Playable extends PlayableSetter<Void>, MetadataHolder {
+public interface Playable extends PlayableSetter<Void>, RookitModel {
 
-    String PLAYS = "plays";
-    String LAST_PLAYED = "lastPlayed";
-    String SKIPPED = "skipped";
-    String LAST_SKIPPED = "lastSkipped";
-    String DURATION = "duration";
+    Optional<Duration> duration();
 
-    StaticPlaylist freeze(StorageManager db);
+    EventStats playStats();
 
-    StaticPlaylist freeze(StorageManager db, int limit);
-
-    Optional<Duration> getDuration();
-
-    Optional<LocalDate> getLastPlayed();
-
-    Optional<LocalDate> getLastSkipped();
-
-    long getPlays();
-
-    long getSkipped();
+    EventStats skipStats();
 }

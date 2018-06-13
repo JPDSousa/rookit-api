@@ -19,17 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package org.rookit.api.dm.factory;
 
-import java.util.Map;
+package org.rookit.api.dm.factory;
 
 import org.rookit.api.dm.key.Key;
 
 @SuppressWarnings("javadoc")
 public interface RookitFactory<T, K extends Key> {
 
-    T create(Map<String, Object> data);
-    
     T create(K key);
 
     T createEmpty();
