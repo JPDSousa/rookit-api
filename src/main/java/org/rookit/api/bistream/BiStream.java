@@ -32,7 +32,7 @@ public interface BiStream extends Serializable {
 
     boolean isEmpty();
 
-    InputStream toInput();
+    InputStream readFrom();
 
-    OutputStream toOutput();
+    OutputStream writeTo();
 }
