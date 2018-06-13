@@ -52,5 +52,7 @@ public interface PlayableFilter<Q extends PlayableFilter<Q>> extends RookitFilte
     Q withDurationGreaterThan(Duration duration);
     
     Q withDurationSmallerThan(Duration duration);
+    
+    Q isPlayable(boolean isPlayable);
 
 }

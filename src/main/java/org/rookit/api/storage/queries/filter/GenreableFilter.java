@@ -19,9 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.storage.queries.filter;
 
-import org.bson.types.ObjectId;
 import org.rookit.api.dm.genre.Genre;
 
 @SuppressWarnings("javadoc")
@@ -29,10 +29,10 @@ public interface GenreableFilter<Q extends GenreableFilter<Q>> extends PlayableF
 
     Q withGenre(Genre genre);
     
-    Q withGenre(ObjectId ids);
+    Q withGenre(String ids);
 
     Q withGenres(Genre[] genres);
     
-    Q withGenres(ObjectId[] ids);
+    Q withGenres(String[] ids);
 
 }

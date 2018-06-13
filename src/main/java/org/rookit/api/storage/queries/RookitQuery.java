@@ -1,16 +1,16 @@
 /*******************************************************************************
  * Copyright (C) 2018 Joao Sousa
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,25 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
+
 package org.rookit.api.storage.queries;
 
-import java.util.stream.Stream;
-
+import one.util.streamex.StreamEx;
 import org.rookit.api.dm.RookitModel;
 import org.rookit.api.storage.queries.filter.RookitFilter;
 import org.rookit.api.storage.utils.Order;
+
+import java.util.Optional;
 
 @SuppressWarnings("javadoc")
 public interface RookitQuery<Q extends RookitQuery<Q, E>, E extends RookitModel> extends RookitFilter<Q> {
 
     long count();
 
-    E first();
+    Optional<E> first();
 
     Order newOrder();
 
     Q order(Order order);
 
-    Stream<E> stream();
+    StreamEx<E> stream();
 
 }
