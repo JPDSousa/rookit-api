@@ -19,13 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package org.rookit.api.dm;
+package org.rookit.api.storage;
 
-import java.util.Map;
+import org.rookit.api.storage.datastore.*;
+import org.rookit.api.storage.utils.Order;
 
 @SuppressWarnings("javadoc")
-public interface MetadataHolderSetter<V> {
+public interface StorageManager {
 
-    V putExternalMetadata(String key, Map<String, Object> value);
+    void init();
+
+    void clear();
+
+    void reset();
+
+    AlbumDataStore getAlbumDataStore();
+
+    ArtistDataStore getArtistDataStore();
+
+    TrackDataStore getTrackDataStore();
+
+    PlaylistDataStore getPlaylistDataStore();
+
+    GenreDataStore getGenreDataStore();
+
+    Order newOrder();
 
 }
