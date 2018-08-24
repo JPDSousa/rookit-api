@@ -21,7 +21,9 @@
  ******************************************************************************/
 package org.rookit.api.query.source.javapoet.type;
 
+import com.google.common.base.MoreObjects;
 import com.google.inject.Inject;
+import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import one.util.streamex.StreamEx;
 import org.rookit.api.query.source.guice.Filter;
@@ -32,14 +34,30 @@ import org.rookit.auto.javax.PropertyExtractor;
 import org.rookit.auto.javax.element.ExtendedTypeElement;
 import org.rookit.utils.guice.Top;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 final class FilterPartialTypeSourceFactory extends AbstractPartialTypeSourceFactory {
+
+    private final MethodFactory methodFactory;
+    private final PropertyExtractor extractor;
 
     @Inject
     FilterPartialTypeSourceFactory(@Filter final JavaPoetParameterResolver parameterResolver,
                                    @Filter final PropertyExtractor extractor,
                                    @Top final MethodFactory methodFactory,
                                    final TypeSourceAdapter adapter) {
-        super(parameterResolver, extractor, methodFactory, adapter);
+        super(parameterResolver, adapter);
+        this.methodFactory = methodFactory;
+        this.extractor = extractor;
+    }
+
+    @Override
+    Collection<MethodSpec> methodsFor(final ExtendedTypeElement element) {
+        return this.extractor.fromType(element)
+                .filter(this.methodFactory::isCompatible)
+                .flatMap(this.methodFactory::create)
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -47,4 +65,11 @@ final class FilterPartialTypeSourceFactory extends AbstractPartialTypeSourceFact
         return StreamEx.of(parameterResolver().resolveParameters(parent));
     }
 
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("methodFactory", this.methodFactory)
+                .add("extractor", this.extractor)
+                .toString();
+    }
 }

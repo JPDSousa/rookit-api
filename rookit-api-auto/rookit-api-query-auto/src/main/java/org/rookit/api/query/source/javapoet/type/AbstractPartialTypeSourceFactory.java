@@ -28,10 +28,8 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import one.util.streamex.StreamEx;
 import org.rookit.auto.entity.Identifier;
-import org.rookit.auto.javapoet.MethodFactory;
 import org.rookit.auto.javapoet.naming.JavaPoetParameterResolver;
 import org.rookit.auto.javapoet.type.TypeSourceAdapter;
-import org.rookit.auto.javax.PropertyExtractor;
 import org.rookit.auto.javax.element.ExtendedTypeElement;
 import org.rookit.auto.source.SingleTypeSourceFactory;
 import org.rookit.auto.source.TypeSource;
@@ -43,17 +41,11 @@ import java.util.stream.Collectors;
 abstract class AbstractPartialTypeSourceFactory implements SingleTypeSourceFactory {
 
     private final JavaPoetParameterResolver parameterResolver;
-    private final PropertyExtractor extractor;
-    private final MethodFactory methodFactory;
     private final TypeSourceAdapter adapter;
 
     AbstractPartialTypeSourceFactory(final JavaPoetParameterResolver parameterResolver,
-                                     final PropertyExtractor extractor,
-                                     final MethodFactory methodFactory,
                                      final TypeSourceAdapter adapter) {
         this.parameterResolver = parameterResolver;
-        this.extractor = extractor;
-        this.methodFactory = methodFactory;
         this.adapter = adapter;
     }
 
@@ -65,19 +57,17 @@ abstract class AbstractPartialTypeSourceFactory implements SingleTypeSourceFacto
     public TypeSource create(final Identifier identifier,
                              final ExtendedTypeElement element) {
         final ClassName className = ClassName.get(identifier.packageName().fullName(), identifier.name());
-        final Collection<MethodSpec> methods = this.extractor.fromType(element)
-                .filter(this.methodFactory::isCompatible)
-                .flatMap(this.methodFactory::create)
-                .collect(Collectors.toSet());
 
         final TypeSpec spec = TypeSpec.interfaceBuilder(className)
                 .addTypeVariables(this.parameterResolver.createParameters(element))
-                .addMethods(methods)
+                .addMethods(methodsFor(element))
                 .addSuperinterfaces(parentNamesOf(element))
                 .addModifiers(Modifier.PUBLIC)
                 .build();
         return this.adapter.fromTypeSpec(identifier, spec);
     }
+
+    abstract Collection<MethodSpec> methodsFor(ExtendedTypeElement element);
 
     abstract StreamEx<TypeName> superTypesFor(ExtendedTypeElement parent);
 
@@ -91,8 +81,6 @@ abstract class AbstractPartialTypeSourceFactory implements SingleTypeSourceFacto
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("parameterResolver", this.parameterResolver)
-                .add("extractor", this.extractor)
-                .add("methodFactory", this.methodFactory)
                 .add("adapter", this.adapter)
                 .toString();
     }

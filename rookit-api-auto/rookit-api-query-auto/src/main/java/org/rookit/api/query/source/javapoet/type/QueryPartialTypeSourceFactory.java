@@ -24,37 +24,57 @@ package org.rookit.api.query.source.javapoet.type;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeVariableName;
 import one.util.streamex.StreamEx;
 import org.rookit.api.query.source.guice.Filter;
 import org.rookit.api.query.source.guice.Query;
-import org.rookit.auto.javapoet.MethodFactory;
+import org.rookit.api.query.source.guice.QueryEntity;
+import org.rookit.auto.javapoet.naming.JavaPoetNamingFactory;
 import org.rookit.auto.javapoet.naming.JavaPoetParameterResolver;
 import org.rookit.auto.javapoet.type.TypeSourceAdapter;
-import org.rookit.auto.javax.PropertyExtractor;
 import org.rookit.auto.javax.element.ExtendedTypeElement;
 
+import javax.lang.model.element.Modifier;
 import java.util.Collection;
 
 final class QueryPartialTypeSourceFactory extends AbstractPartialTypeSourceFactory {
 
     private final JavaPoetParameterResolver filterParameterResolver;
+    private final JavaPoetNamingFactory namingFactory;
 
     @Inject
     private QueryPartialTypeSourceFactory(@Query final JavaPoetParameterResolver parameterResolver,
-                                          @Query final PropertyExtractor extractor,
-                                          @Query final MethodFactory methodFactory,
                                           final TypeSourceAdapter adapter,
-                                          @Filter final JavaPoetParameterResolver fParameterResolver) {
-        super(parameterResolver, extractor, methodFactory, adapter);
+                                          @Filter final JavaPoetParameterResolver fParameterResolver,
+                                          @QueryEntity final JavaPoetNamingFactory namingFactory) {
+        super(parameterResolver, adapter);
         this.filterParameterResolver = fParameterResolver;
+        this.namingFactory = namingFactory;
+    }
+
+    @Override
+    Collection<MethodSpec> methodsFor(final ExtendedTypeElement element) {
+        return element.upstreamEntity()
+                .map(this::adapterMethod)
+                .map(ImmutableSet::of)
+                .orElse(ImmutableSet.of());
+    }
+
+    private MethodSpec adapterMethod(final ExtendedTypeElement element) {
+        final ClassName className = this.namingFactory.classNameFor(element);
+        return MethodSpec.methodBuilder("to" + className.simpleName())
+                .returns(TypeVariableName.get(className.toString()))
+                .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                .build();
     }
 
     @Override
     StreamEx<TypeName> superTypesFor(final ExtendedTypeElement parent) {
         return StreamEx.of(parameterResolver().resolveParameters(parent));
     }
-
 
     @Override
     Collection<TypeName> parentNamesOf(final ExtendedTypeElement baseElement) {
@@ -68,6 +88,7 @@ final class QueryPartialTypeSourceFactory extends AbstractPartialTypeSourceFacto
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("filterParameterResolver", this.filterParameterResolver)
+                .add("namingFactory", this.namingFactory)
                 .toString();
     }
 }

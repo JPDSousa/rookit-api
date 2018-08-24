@@ -31,7 +31,6 @@ import org.rookit.api.query.source.guice.Query;
 import org.rookit.api.query.source.javapoet.JavaPoetModule;
 import org.rookit.api.query.source.naming.NamingModule;
 import org.rookit.api.query.source.property.PropertyModule;
-import org.rookit.api.query.source.query.QueryModule;
 import org.rookit.auto.EntityHandler;
 import org.rookit.auto.StatelessEntityHandler;
 import org.rookit.auto.entity.BaseEntityFactory;
@@ -47,8 +46,7 @@ public final class SourceModule extends AbstractModule {
             FilterModule.getModule(),
             PropertyModule.getModule(),
             JavaPoetModule.getModule(),
-            NamingModule.getModule(),
-            QueryModule.getModule());
+            NamingModule.getModule());
 
     public static Module getModule() {
         return MODULE;
