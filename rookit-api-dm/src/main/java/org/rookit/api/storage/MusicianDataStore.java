@@ -19,11 +19,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package org.rookit.api.storage.query;
+package org.rookit.api.storage;
 
-import org.rookit.api.dm.artist.Artist;
-import org.rookit.utils.source.Prototype;
+import org.rookit.api.dm.artist.Musician;
+import org.rookit.api.storage.query.MusicianQuery;
 
-@Prototype
-public interface ArtistQueryFactory extends QueryFactory<Artist, org.rookit.api.storage.query.ArtistQuery> {
+public interface MusicianDataStore extends RookitModelDataStore<Musician, MusicianQuery, MusicianUpdateQuery, MusicianUpdateFilterQuery> {
 }

@@ -28,4 +28,6 @@ import org.rookit.api.storage.query.RookitModelQuery;
 public interface DataSource<E extends RookitModel, Q extends RookitModelQuery<E, Q>> {
 
     QueryResult<E> get(Q query);
+
+    Q query();
 }
