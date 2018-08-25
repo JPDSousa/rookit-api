@@ -44,7 +44,6 @@ final class FilterEntityFactory extends AbstractEntityFactory {
 
     @Override
     protected boolean contains(final ExtendedTypeElement element) {
-        // no exclusions
-        return false;
+        return true;
     }
 }

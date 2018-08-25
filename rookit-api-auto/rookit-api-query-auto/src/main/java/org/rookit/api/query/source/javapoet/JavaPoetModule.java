@@ -70,7 +70,7 @@ public final class JavaPoetModule extends AbstractModule {
     @Provides
     @Singleton
     @FilterEntity
-    SingleTypeSourceFactory filterEntityFactory(@Filter final NamingFactory namingFactory) {
+    SingleTypeSourceFactory filterEntityFactory(@FilterEntity final NamingFactory namingFactory) {
         return EmptyTypeSourceFactory.create(namingFactory);
     }
 
