@@ -21,8 +21,6 @@
  ******************************************************************************/
 package org.rookit.api.query.source.naming;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Key;
 import com.google.inject.Module;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
@@ -32,19 +30,19 @@ import org.rookit.api.query.source.guice.FilterEntity;
 import org.rookit.api.query.source.guice.Query;
 import org.rookit.api.query.source.guice.QueryEntity;
 import org.rookit.auto.javapoet.naming.JavaPoetNamingFactory;
-import org.rookit.auto.naming.NamingFactory;
+import org.rookit.auto.naming.AbstractNamingModule;
+import org.rookit.auto.naming.BaseJavaPoetNamingFactory;
 import org.rookit.auto.naming.PackageReference;
 import org.rookit.auto.naming.PackageReferenceFactory;
 
-import java.lang.annotation.Annotation;
-
 @SuppressWarnings("MethodMayBeStatic")
-public final class NamingModule extends AbstractModule {
+public final class NamingModule extends AbstractNamingModule {
 
     private static final String PACKAGE_API = "api";
     private static final String PACKAGE_STORAGE = "storage";
     private static final String PACKAGE_FILTER = "filter";
     private static final String PACKAGE_QUERY = "query";
+    private static final String METHOD_PREFIX = "with";
 
     private static final Module MODULE = new NamingModule();
 
@@ -60,11 +58,6 @@ public final class NamingModule extends AbstractModule {
         bindNaming(Filter.class);
         bindNaming(QueryEntity.class);
         bindNaming(FilterEntity.class);
-    }
-
-    private void bindNaming(final Class<? extends Annotation> annotationClass) {
-        bind(NamingFactory.class).annotatedWith(annotationClass)
-                .to(Key.get(JavaPoetNamingFactory.class, annotationClass)).in(Singleton.class);
     }
 
     @Singleton
@@ -91,27 +84,27 @@ public final class NamingModule extends AbstractModule {
     @Provides
     @Filter
     JavaPoetNamingFactory filterNamingFactory(@Filter final PackageReference packageReference) {
-        return new NamingFactoryImpl(packageReference, "Filter", "Generic");
+        return BaseJavaPoetNamingFactory.create(packageReference, "Filter", "Generic", METHOD_PREFIX);
     }
 
     @Singleton
     @Provides
     @Query
     JavaPoetNamingFactory queryNamingFactory(@Query final PackageReference packageReference) {
-        return new NamingFactoryImpl(packageReference, "Query", "Generic");
+        return BaseJavaPoetNamingFactory.create(packageReference, "Query", "Generic", METHOD_PREFIX);
     }
 
     @Singleton
     @Provides
     @FilterEntity
     JavaPoetNamingFactory filterEntityNamingFactory(@Filter final PackageReference packageReference) {
-        return new NamingFactoryImpl(packageReference, "Filter", StringUtils.EMPTY);
+        return BaseJavaPoetNamingFactory.create(packageReference, "Filter", StringUtils.EMPTY, METHOD_PREFIX);
     }
 
     @Singleton
     @Provides
     @QueryEntity
     JavaPoetNamingFactory queryEntityNamingFactory(@Query final PackageReference packageReference) {
-        return new NamingFactoryImpl(packageReference, "Query", StringUtils.EMPTY);
+        return BaseJavaPoetNamingFactory.create(packageReference, "Query", StringUtils.EMPTY, METHOD_PREFIX);
     }
 }

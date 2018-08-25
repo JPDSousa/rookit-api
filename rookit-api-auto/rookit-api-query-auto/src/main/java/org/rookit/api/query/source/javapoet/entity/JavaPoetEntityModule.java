@@ -31,7 +31,7 @@ import org.rookit.api.query.source.guice.NoopQuery;
 import org.rookit.api.query.source.guice.Query;
 import org.rookit.auto.entity.EntityFactory;
 import org.rookit.auto.entity.PartialEntityFactory;
-import org.rookit.auto.entity.noop.ExclusionPartialEntityFactory;
+import org.rookit.auto.entity.noop.NoopPartialEntityFactory;
 import org.rookit.auto.entity.noop.NoopEntityFactory;
 import org.rookit.auto.identifier.IdentifierFactory;
 
@@ -73,7 +73,7 @@ public final class JavaPoetEntityModule extends AbstractModule {
     @Provides
     @NoopFilter
     PartialEntityFactory noopPartialFilterFactory(@Filter final IdentifierFactory identifierFactory) {
-        return ExclusionPartialEntityFactory.create(identifierFactory);
+        return NoopPartialEntityFactory.create(identifierFactory);
     }
 
     @Singleton
@@ -89,7 +89,7 @@ public final class JavaPoetEntityModule extends AbstractModule {
     @Provides
     @NoopQuery
     PartialEntityFactory noopFactory(@Query final IdentifierFactory identifierFactory) {
-        return ExclusionPartialEntityFactory.create(identifierFactory);
+        return NoopPartialEntityFactory.create(identifierFactory);
     }
 
 }

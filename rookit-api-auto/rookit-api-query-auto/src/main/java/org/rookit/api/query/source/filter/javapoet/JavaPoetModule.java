@@ -25,9 +25,8 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Module;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import org.rookit.api.query.source.guice.Filter;
-import org.rookit.auto.javax.ExtendedPropertyFactory;
 import org.rookit.auto.javax.BasePropertyExtractor;
+import org.rookit.auto.javax.ExtendedPropertyFactory;
 import org.rookit.auto.javax.PropertyExtractor;
 
 @SuppressWarnings("MethodMayBeStatic")
@@ -46,7 +45,6 @@ public final class JavaPoetModule extends AbstractModule {
 
     @Singleton
     @Provides
-    @Filter
     PropertyExtractor methodExtractor(final ExtendedPropertyFactory propertyFactory) {
         return BasePropertyExtractor.create(propertyFactory);
     }

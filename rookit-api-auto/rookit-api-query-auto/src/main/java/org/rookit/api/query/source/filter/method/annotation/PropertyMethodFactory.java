@@ -29,7 +29,6 @@ import com.google.inject.Singleton;
 import com.squareup.javapoet.MethodSpec;
 import org.apache.commons.text.WordUtils;
 import org.rookit.api.query.source.AnnotationBasedMethodFactory;
-import org.rookit.api.query.source.guice.Filter;
 import org.rookit.auto.javapoet.MethodFactory;
 import org.rookit.auto.javax.ExtendedProperty;
 import org.rookit.auto.javax.PropertyAdapter;
@@ -53,7 +52,7 @@ final class PropertyMethodFactory implements AnnotationBasedMethodFactory {
 
     @Inject
     private PropertyMethodFactory(final Types types,
-                                  @Filter final PropertyExtractor propertyExtractor,
+                                  final PropertyExtractor propertyExtractor,
                                   @Top final Provider<MethodFactory> methodFactory,
                                   final PropertyAdapter adapter) {
         this.types = types;

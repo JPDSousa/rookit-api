@@ -23,12 +23,20 @@ package org.rookit.api.query.source.javapoet.type;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Module;
+import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import org.rookit.api.query.source.guice.Filter;
 import org.rookit.api.query.source.guice.Query;
 import org.rookit.api.query.source.guice.QueryEntity;
+import org.rookit.auto.javapoet.MethodFactory;
+import org.rookit.auto.javapoet.naming.JavaPoetParameterResolver;
+import org.rookit.auto.javapoet.type.PropertyBasedTypeSourceFactory;
+import org.rookit.auto.javapoet.type.TypeSourceAdapter;
+import org.rookit.auto.javax.PropertyExtractor;
 import org.rookit.auto.source.SingleTypeSourceFactory;
+import org.rookit.utils.guice.Top;
 
+@SuppressWarnings("MethodMayBeStatic")
 public final class TypeSourceModule extends AbstractModule {
 
     private static final Module MODULE = new TypeSourceModule();
@@ -43,9 +51,17 @@ public final class TypeSourceModule extends AbstractModule {
     protected void configure() {
         bind(SingleTypeSourceFactory.class).annotatedWith(Query.class).to(QueryPartialTypeSourceFactory.class)
                 .in(Singleton.class);
-        bind(SingleTypeSourceFactory.class).annotatedWith(Filter.class).to(FilterPartialTypeSourceFactory.class)
-                .in(Singleton.class);
         bind(SingleTypeSourceFactory.class).annotatedWith(QueryEntity.class).to(QueryTypeSourceFactory.class)
                 .in(Singleton.class);
+    }
+
+    @Singleton
+    @Provides
+    @Filter
+    SingleTypeSourceFactory filterTypeSourceFactory(@Filter final JavaPoetParameterResolver parameterResolver,
+                                                    final PropertyExtractor extractor,
+                                                    @Top final MethodFactory methodFactory,
+                                                    final TypeSourceAdapter adapter) {
+        return PropertyBasedTypeSourceFactory.create(parameterResolver, methodFactory, adapter, extractor);
     }
 }

@@ -28,19 +28,19 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeVariableName;
-import one.util.streamex.StreamEx;
 import org.rookit.api.query.source.guice.Filter;
 import org.rookit.api.query.source.guice.Query;
 import org.rookit.api.query.source.guice.QueryEntity;
 import org.rookit.auto.javapoet.naming.JavaPoetNamingFactory;
 import org.rookit.auto.javapoet.naming.JavaPoetParameterResolver;
+import org.rookit.auto.javapoet.type.AbstractTypeSourceFactory;
 import org.rookit.auto.javapoet.type.TypeSourceAdapter;
 import org.rookit.auto.javax.element.ExtendedTypeElement;
 
 import javax.lang.model.element.Modifier;
 import java.util.Collection;
 
-final class QueryPartialTypeSourceFactory extends AbstractPartialTypeSourceFactory {
+final class QueryPartialTypeSourceFactory extends AbstractTypeSourceFactory {
 
     private final JavaPoetParameterResolver filterParameterResolver;
     private final JavaPoetNamingFactory namingFactory;
@@ -56,7 +56,7 @@ final class QueryPartialTypeSourceFactory extends AbstractPartialTypeSourceFacto
     }
 
     @Override
-    Collection<MethodSpec> methodsFor(final ExtendedTypeElement element) {
+    public Collection<MethodSpec> methodsFor(final ExtendedTypeElement element) {
         return element.upstreamEntity()
                 .map(this::adapterMethod)
                 .map(ImmutableSet::of)
@@ -72,12 +72,7 @@ final class QueryPartialTypeSourceFactory extends AbstractPartialTypeSourceFacto
     }
 
     @Override
-    StreamEx<TypeName> superTypesFor(final ExtendedTypeElement parent) {
-        return StreamEx.of(parameterResolver().resolveParameters(parent));
-    }
-
-    @Override
-    Collection<TypeName> parentNamesOf(final ExtendedTypeElement baseElement) {
+    public Collection<TypeName> parentNamesOf(final ExtendedTypeElement baseElement) {
         return ImmutableSet.<TypeName>builder()
                 .addAll(super.parentNamesOf(baseElement))
                 .add(this.filterParameterResolver.resolveParameters(baseElement))

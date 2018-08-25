@@ -35,7 +35,7 @@ import org.rookit.auto.StatelessEntityHandler;
 import org.rookit.auto.annotation.Noop;
 import org.rookit.auto.entity.EntityFactory;
 import org.rookit.auto.entity.PartialEntityFactory;
-import org.rookit.auto.entity.noop.ExclusionPartialEntityFactory;
+import org.rookit.auto.entity.noop.NoopPartialEntityFactory;
 import org.rookit.auto.entity.noop.NoopEntityFactory;
 import org.rookit.auto.identifier.BaseIdentifierFactory;
 import org.rookit.auto.identifier.IdentifierFactory;
@@ -121,6 +121,6 @@ public final class SourceModule extends AbstractModule {
     @Provides
     @Noop
     PartialEntityFactory noopPartialFactory(final IdentifierFactory identifierFactory) {
-        return ExclusionPartialEntityFactory.create(identifierFactory);
+        return NoopPartialEntityFactory.create(identifierFactory);
     }
 }
