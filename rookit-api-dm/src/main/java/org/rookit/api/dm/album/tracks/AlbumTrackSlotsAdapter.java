@@ -16,7 +16,7 @@ public interface AlbumTrackSlotsAdapter {
     Collection<TrackSlot> asCollection();
 
     /**
-     * Returns the set of tracks from the disc passed as parameter.
+     * Returns the withProperty of tracks from the disc passed as parameter.
      *
      * @param cd
      *            disc official

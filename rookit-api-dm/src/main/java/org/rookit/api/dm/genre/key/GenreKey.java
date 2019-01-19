@@ -21,11 +21,13 @@
  ******************************************************************************/
 package org.rookit.api.dm.genre.key;
 
+import org.immutables.value.Value;
 import org.rookit.api.dm.key.Key;
 
 @SuppressWarnings("javadoc")
+@Value.Immutable
 public interface GenreKey extends Key {
     
-    String getName();
+    String name();
 
 }

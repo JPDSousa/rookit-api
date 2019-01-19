@@ -3,19 +3,18 @@ package org.rookit.api.dm.album.disc;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import org.rookit.api.dm.album.slot.TrackSlot;
 import org.rookit.api.dm.track.Track;
-import org.rookit.utils.DurationUtils;
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.utils.optional.Optional;
 
 import java.time.Duration;
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @PropertyContainer
 public interface Disc extends Iterable<Track> {
 
-    @Property
+    @Property(isSettable = true)
     String name();
 
     Optional<Track> track(int number);
@@ -30,10 +29,10 @@ public interface Disc extends Iterable<Track> {
                 .map(Track::duration)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .reduce(Duration.ZERO, DurationUtils::plus);
+                .reduce(Duration.ZERO, Duration::plus);
     }
 
-    @Property
+    @Property(isSettable = true)
     Int2ObjectMap<Track> trackMap();
 
     Collection<Track> asTrackCollection();

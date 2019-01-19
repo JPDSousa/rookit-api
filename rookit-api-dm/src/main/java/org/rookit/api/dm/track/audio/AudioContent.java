@@ -22,9 +22,9 @@
 package org.rookit.api.dm.track.audio;
 
 import org.immutables.value.Value;
-import org.rookit.utils.convention.annotation.Property;
+import org.rookit.convention.annotation.Property;
 import org.rookit.api.bistream.BiStream;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.PropertyContainer;
 
 @Value.Immutable
 @Value.Style(canBuild = "isBuildable")

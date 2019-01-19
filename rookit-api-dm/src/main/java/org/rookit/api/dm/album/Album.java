@@ -22,23 +22,23 @@
 
 package org.rookit.api.dm.album;
 
-import org.rookit.utils.convention.annotation.Entity;
-import org.rookit.utils.convention.annotation.Property;
 import org.rookit.api.bistream.BiStream;
 import org.rookit.api.dm.album.factory.AlbumFactory;
+import org.rookit.api.dm.album.key.AlbumKey;
 import org.rookit.api.dm.album.release.Release;
 import org.rookit.api.dm.album.tracks.AlbumTracks;
 import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.genre.Genre;
-import org.rookit.api.dm.genre.Genreable;
+import org.rookit.api.dm.genre.able.Genreable;
 import org.rookit.api.dm.track.Track;
-import org.rookit.utils.OptionalUtils;
+import org.rookit.convention.annotation.Entity;
+import org.rookit.convention.annotation.Property;
+import org.rookit.utils.optional.Optional;
 
 import java.nio.file.Files;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -55,32 +55,27 @@ import java.util.stream.Collectors;
  * normal to have two discs with the same official.
  * <p>
  * In order to fromProperty a valid album, it must have a valid album, a valid release
- * release and a valid set of artists (see
- * {@link AlbumFactory#createSingleArtistAlbum(org.rookit.api.dm.album.key.AlbumKey)} for further
+ * release and a valid withProperty of artists (see
+ * {@link AlbumFactory#createSingleArtistAlbum(AlbumKey)} for further
  * reference). This class has an associated factory {@link AlbumFactory}, which
  * can provide helpful methods to easily fromProperty functional instances of this
  * interface.
  *
  * @see AlbumFactory
+ * @see AlbumKey
  * @author Joao Sousa (jpd.sousa@campus.fct.unl.pt)
  *
  */
 @SuppressWarnings("javadoc")
 @Entity
-public interface Album extends Genreable, Comparable<Album>, AlbumSetter<Void> {
-
-    @Override
-    default int compareTo(final Album o) {
-        final int title = title().compareTo(o.title());
-        return (title == 0) ? OptionalUtils.compare(id(), o.id()) : title;
-    }
+public interface Album extends Genreable, Comparable<Album>, AlbumSetter {
 
     /**
      * Returns the album release, as a {@link TypeAlbum} enumeration.
      *
      * @return album release
      */
-    @Property
+    @Property(isSettable = true)
     TypeAlbum type();
 
     /**
@@ -88,7 +83,7 @@ public interface Album extends Genreable, Comparable<Album>, AlbumSetter<Void> {
      *
      * @return title of this album.
      */
-    @Property
+    @Property(isSettable = true)
     String title();
 
     /**
@@ -96,13 +91,13 @@ public interface Album extends Genreable, Comparable<Album>, AlbumSetter<Void> {
      *
      * @return album's release release
      */
-    @Property
+    @Property(isSettable = true)
     Release release();
 
     /**
      * Returns the artists that are authors of the album.
      * <p>
-     * Do not confuse the set returned as a set of all artists involved in the
+     * Do not confuse the withProperty returned as a withProperty of all artists involved in the
      * album. In order to get such result, one should iterate over all tracks on
      * the album and get the artists of each track.
      * </p>
@@ -111,13 +106,10 @@ public interface Album extends Genreable, Comparable<Album>, AlbumSetter<Void> {
      *     as it does not recognize java.util.Collection as a collection release.
      * </p>
      *
-     * @return set of authors of this album
+     * @return withProperty of authors of this album
      */
-    @Property
+    @Property(isSettable = true)
     Collection<Artist> artists();
-
-    @Override
-    boolean equals(Object obj);
 
     @Override
     default Collection<Genre> allGenres() {
@@ -161,8 +153,5 @@ public interface Album extends Genreable, Comparable<Album>, AlbumSetter<Void> {
     default String fullTitle() {
         return release().type().getFormattedName(title());
     }
-
-    @Override
-    int hashCode();
 
 }

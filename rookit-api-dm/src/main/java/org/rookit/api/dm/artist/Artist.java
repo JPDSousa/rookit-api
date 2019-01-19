@@ -21,43 +21,28 @@
  ******************************************************************************/
 package org.rookit.api.dm.artist;
 
-import org.rookit.utils.convention.annotation.Entity;
-import org.rookit.utils.convention.annotation.Property;
 import org.rookit.api.dm.artist.profile.Profile;
-import org.rookit.api.dm.genre.Genreable;
-import org.rookit.utils.OptionalUtils;
+import org.rookit.api.dm.genre.able.Genreable;
+import org.rookit.convention.annotation.Entity;
+import org.rookit.convention.annotation.Property;
 
 import java.util.Collection;
 
 @SuppressWarnings("javadoc")
-//@Indexes({
-//        @Index(fields = {
-//                @Field(value = NAME, releaseType = IndexType.ASC),
-//                @Field(value = TYPE, releaseType = IndexType.ASC),
-//                @Field(value = ISNI, releaseType = IndexType.ASC)
-//        }, options = @IndexOptions(unique = true)),
-//        @Index(fields = @Field(value = NAME, releaseType = IndexType.TEXT))
-//})
 @Entity
-public interface Artist extends Genreable, Comparable<Artist>, ArtistSetter<Void> {
+public interface Artist extends Genreable, Comparable<Artist>, ArtistSetter {
 
-    @Override
-    default int compareTo(final Artist o) {
-        final int profile = profile().compareTo(o.profile());
-        return (profile == 0) ? OptionalUtils.compare(id(), o.id()) : profile;
-    }
-
-    @Property
+    @Property(isSettable = true)
     Profile profile();
 
     /**
-     * Returns the set of artists related to this artist
+     * Returns the withProperty of artists related to this artist
      * 
-     * @return set of artists related to this artist
+     * @return withProperty of artists related to this artist
      */
     @Property
     Collection<Artist> relatedArtists();
 
-    @Property
+    @Property(isSettable = true)
     TypeArtist type();
 }

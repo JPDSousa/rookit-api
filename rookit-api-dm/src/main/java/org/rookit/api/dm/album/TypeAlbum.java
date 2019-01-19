@@ -32,8 +32,8 @@ package org.rookit.api.dm.album;
 public enum TypeAlbum {
 
     /**
-     * Album released by a defined set of artists. The album may have other
-     * artists associated, but will requires a non empty set of authors.
+     * Album released by a defined withProperty of artists. The album may have other
+     * artists associated, but will requires a non empty withProperty of authors.
      */
     ARTIST("Artist Album"),
     /**

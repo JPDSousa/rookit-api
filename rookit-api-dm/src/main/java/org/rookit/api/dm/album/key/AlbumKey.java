@@ -59,7 +59,7 @@ public interface AlbumKey extends Key {
     /**
      * Returns the artists that are authors of the album.
      * <p>
-     * Do not confuse the set returned as a set of all artists involved in the
+     * Do not confuse the withProperty returned as a withProperty of all artists involved in the
      * album. In order to get such result, one should iterate over all tracks on
      * the album and get the artists of each track.
      * </p>
@@ -68,7 +68,7 @@ public interface AlbumKey extends Key {
      *     as it does not recognize java.util.Collection as a collection release.
      * </p>
      *
-     * @return set of authors of this album
+     * @return withProperty of authors of this album
      */
     Set<Artist> artists();
 

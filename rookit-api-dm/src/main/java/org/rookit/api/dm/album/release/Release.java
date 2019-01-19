@@ -1,20 +1,19 @@
 package org.rookit.api.dm.album.release;
 
 import org.immutables.value.Value;
-import org.rookit.utils.convention.annotation.Property;
 import org.rookit.api.dm.album.TypeRelease;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.utils.optional.Optional;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @PropertyContainer
 @Value.Immutable
 @Value.Style(canBuild = "isBuildable")
-public interface Release extends Serializable {
+public interface Release {
 
-    @Property
+    @Property(isSettable = true)
     TypeRelease type();
 
     @Property

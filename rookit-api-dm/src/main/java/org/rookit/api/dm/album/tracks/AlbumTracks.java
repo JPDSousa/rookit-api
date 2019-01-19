@@ -3,15 +3,14 @@ package org.rookit.api.dm.album.tracks;
 import com.google.common.collect.Lists;
 import org.rookit.api.dm.album.disc.Disc;
 import org.rookit.api.dm.track.Track;
-import org.rookit.utils.DurationUtils;
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.utils.optional.Optional;
 
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @PropertyContainer
@@ -26,9 +25,9 @@ public interface AlbumTracks extends Iterable<Track> {
     boolean contains(Track track);
 
     /**
-     * Return a set of discs with the discs on the album.
+     * Return a withProperty of discs with the discs on the album.
      *
-     * @return a set of the album discs.
+     * @return a withProperty of the album discs.
      */
     @Property
     Collection<Disc> discs();
@@ -51,11 +50,7 @@ public interface AlbumTracks extends Iterable<Track> {
      */
     int size();
 
-    default Optional<Duration> duration() {
-        return Optional.of(discs().stream()
-                .map(Disc::duration)
-                .reduce(Duration.ZERO, DurationUtils::plus));
-    }
+    Optional<Duration> duration();
 
     Stream<Track> stream();
 

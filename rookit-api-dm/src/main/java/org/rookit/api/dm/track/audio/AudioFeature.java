@@ -23,18 +23,17 @@ package org.rookit.api.dm.track.audio;
 
 import com.google.common.collect.Range;
 import com.kekstudio.musictheory.Key;
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
 import org.rookit.utils.optional.OptionalBoolean;
 import org.rookit.utils.optional.OptionalShort;
 
-import java.io.Serializable;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
 @SuppressWarnings({"javadoc", "ConstantDeclaredInInterface"})
 @PropertyContainer
-public interface AudioFeature extends AudioFeatureSetter<Void>, Serializable {
+public interface AudioFeature extends AudioFeatureSetter {
 
     Range<Short> RANGE_BPM = Range.openClosed((short) 0, (short) 400);
     Range<Double> RANGE_DANCEABILITY = Range.open(0.0, 1.0);

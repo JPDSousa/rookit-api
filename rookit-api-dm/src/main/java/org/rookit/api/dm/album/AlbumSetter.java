@@ -32,18 +32,15 @@ import java.time.LocalDate;
  * An interface with the album setters.
  *
  * @author Joao Sousa (jpd.sousa@campus.fct.unl.pt)
- * @param <T>
- *            return release
- *
  */
 @SuppressWarnings("javadoc")
-public interface AlbumSetter<T> {
+public interface AlbumSetter {
 
-    T addTrack(Track track, int i, String discName);
+    void addTrack(Track track, int i, String discName);
 
-    T addTrack(final TrackSlot slot);
+    void addTrack(final TrackSlot slot);
 
-    T addTrackLast(Track track, String discName);
+    void addTrackLast(Track track, String discName);
 
     /**
      * <b>This field is only used by {@link Track} to relocate tracks when its
@@ -63,13 +60,13 @@ public interface AlbumSetter<T> {
      * @return TODO
      * 
      */
-    T relocate(String discName, int number, String newDiscName, int newNumber);
+    void relocate(String discName, int number, String newDiscName, int newNumber);
 
-    T clearTracks();
+    void clearTracks();
 
-    T removeTrack(int number, String disc);
+    void removeTrack(int number, String disc);
 
-    T removeTrack(Track track);
+    void removeTrack(Track track);
 
     /**
      * Sets a new cover art for the album. The cover art is represented as a
@@ -102,12 +99,12 @@ public interface AlbumSetter<T> {
      * </pre>
      * 
      * @param image
-     *            byte array that represents the image to be set as cover
+     *            byte array that represents the image to be withProperty as cover
      * @return object to return
      */
-    T setCover(byte[] image);
+    void setCover(byte[] image);
 
-    T setCover(BiStream image);
+    void setCover(BiStream image);
 
     /**
      * Sets a new release date for the album. The old date assigned will be
@@ -117,6 +114,6 @@ public interface AlbumSetter<T> {
      *            new date to be assigned
      * @return object to return
      */
-    T setReleaseDate(LocalDate date);
+    void setReleaseDate(LocalDate date);
 
 }

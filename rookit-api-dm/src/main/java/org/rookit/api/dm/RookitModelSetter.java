@@ -23,8 +23,8 @@
 package org.rookit.api.dm;
 
 @SuppressWarnings("javadoc")
-public interface RookitModelSetter<V> {
+public interface RookitModelSetter {
 
-    V setId(String id);
+    void setId(String id);
 
 }

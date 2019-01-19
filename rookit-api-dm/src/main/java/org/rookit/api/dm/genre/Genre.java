@@ -21,27 +21,19 @@
  ******************************************************************************/
 package org.rookit.api.dm.genre;
 
-import org.rookit.utils.convention.annotation.Entity;
-import org.rookit.utils.convention.annotation.Property;
 import org.rookit.api.dm.play.able.Playable;
-import org.rookit.utils.OptionalUtils;
-
-import java.util.Optional;
+import org.rookit.convention.annotation.Entity;
+import org.rookit.convention.annotation.Property;
+import org.rookit.utils.optional.Optional;
 
 @SuppressWarnings("javadoc")
 @Entity
-public interface Genre extends Playable, Comparable<Genre>, GenreSetter<Void> {
-
-    @Override
-    default int compareTo(final Genre o) {
-        final int name = name().compareTo(o.name());
-        return (name == 0) ? OptionalUtils.compare(id(), o.id()) : name;
-    }
+public interface Genre extends Playable, Comparable<Genre>, GenreSetter {
 
     @Property
     Optional<String> description();
 
-    @Property
+    @Property(isSettable = true)
     String name();
 
 }

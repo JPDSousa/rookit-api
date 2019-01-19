@@ -22,14 +22,13 @@
 package org.rookit.api.dm.artist.profile;
 
 import com.neovisionaries.i18n.CountryCode;
-import org.rookit.utils.convention.annotation.Property;
 import org.rookit.api.bistream.BiStream;
 import org.rookit.api.dm.artist.external.ExternalIdentifiers;
 import org.rookit.api.dm.artist.name.ArtistName;
 import org.rookit.api.dm.artist.timeline.Timeline;
-import org.rookit.utils.convention.annotation.PropertyContainer;
-
-import java.util.Optional;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.utils.optional.Optional;
 
 @PropertyContainer
 public interface Profile extends Comparable<Profile> {
@@ -39,13 +38,13 @@ public interface Profile extends Comparable<Profile> {
         return name().compareTo(o.name());
     }
 
-    @Property
+    @Property(isSettable = true)
     ArtistName name();
 
     @Property
     Timeline timeline();
 
-    @Property
+    @Property(isSettable = true)
     ExternalIdentifiers externalIdentifiers();
 
     /**

@@ -22,14 +22,14 @@
 
 package org.rookit.api.dm.artist;
 
-import org.rookit.utils.convention.annotation.EntityExtension;
-import org.rookit.utils.convention.annotation.Property;
+import org.rookit.convention.annotation.EntityExtension;
+import org.rookit.convention.annotation.Property;
 
 import java.util.Collection;
 
 @SuppressWarnings("javadoc")
 @EntityExtension
-public interface GroupArtist extends Artist, GroupArtistSetter<Void> {
+public interface GroupArtist extends Artist, GroupArtistSetter {
 
     @Property
     TypeGroup groupType();

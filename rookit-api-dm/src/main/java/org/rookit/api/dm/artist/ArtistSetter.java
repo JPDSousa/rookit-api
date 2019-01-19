@@ -29,14 +29,11 @@ import java.util.Collection;
 
 /**
  * @author Joao Sousa (jps.liaf@gmail.com)
- *
- * @param <T>
- *            return release
  */
 @SuppressWarnings("javadoc")
-public interface ArtistSetter<T> {
+public interface ArtistSetter {
 
-    T addAlias(String alias);
+    void addAlias(String alias);
 
     /**
      * Add the artist passed as parameter to the list of related artists. This
@@ -51,28 +48,28 @@ public interface ArtistSetter<T> {
      *            artist to relate this artist with.
      * @return object to return
      */
-    T addRelatedArtist(Artist artist);
+    void addRelatedArtist(Artist artist);
 
-    T clearAliases();
+    void clearAliases();
 
-    T removeAlias(String alias);
+    void removeAlias(String alias);
 
-    T setAliases(Collection<String> aliases);
+    void setAliases(Collection<String> aliases);
 
-    T setBeginDate(LocalDate beginDate);
+    void setBeginDate(LocalDate beginDate);
 
-    T setEndDate(LocalDate endDate);
+    void setEndDate(LocalDate endDate);
 
-    T setIPI(String ipi);
+    void setIPI(String ipi);
 
     /**
      * Sets a new origin for the artist
      * 
      * @param origin
-     *            origin to set
+     *            origin to withProperty
      * @return object to return
      */
-    T setOrigin(CountryCode origin);
+    void setOrigin(CountryCode origin);
 
-    T setPicture(byte[] picture);
+    void setPicture(byte[] picture);
 }

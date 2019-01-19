@@ -21,8 +21,8 @@
  ******************************************************************************/
 package org.rookit.api.dm.play;
 
-import org.rookit.utils.convention.annotation.EntityExtension;
-import org.rookit.utils.convention.annotation.Property;
+import org.rookit.convention.annotation.EntityExtension;
+import org.rookit.convention.annotation.Property;
 import org.rookit.api.dm.track.Track;
 
 import java.util.Collection;
@@ -30,7 +30,7 @@ import java.util.stream.Stream;
 
 @SuppressWarnings("javadoc")
 @EntityExtension
-public interface StaticPlaylist extends Playlist, StaticPlaylistSetter<Void> {
+public interface StaticPlaylist extends Playlist, StaticPlaylistSetter {
 
     boolean contains(Track o);
 

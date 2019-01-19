@@ -1,0 +1,62 @@
+{
+  "filter": {
+    "enabled": true,
+    "parameterName": "I",
+    "basePackage": "storage.filter",
+    "entitySuffix": "Filter",
+    "methodPrefix": "with",
+    "partialEntityPrefix": "Generic"
+  },
+  "query": {
+    "enabled": true,
+    "parameterName": "Q",
+    "elementParameterName": "E",
+    "basePackage": "storage.query",
+    "entitySuffix": "Query",
+    "partialEntityPrefix": "Generic",
+    "methodPrefix": "with"
+  },
+  "updateFilter": {
+    "enabled": true,
+    "parameterName": "P",
+    "basePackage": "storage.update.filter",
+    "entitySuffix": "UpdateFilterQuery",
+    "partialEntityPrefix": "Generic"
+  },
+  "update": {
+    "enabled": true,
+    "parameterName": "U",
+    "basePackage": "storage.update",
+    "entitySuffix": "UpdateQuery",
+    "partialEntityPrefix": "Generic",
+    "methodPrefix": "set"
+  },
+  "conventionApi": {
+    "enabled": true,
+    "basePackage": "meta",
+    "parameterName": "M",
+    "entitySuffix": "Metatype",
+    "partialEntityPrefix": "Generic"
+  },
+  "conventionMetatype": {
+    "enabled": true,
+    "basePackage": "meta",
+    "entitySuffix": "MetatypeImpl"
+  },
+  "conventionProperty": {
+    "enabled": true,
+    "basePackage": "meta",
+    "parameterName": "T",
+    "entitySuffix": "MetatypeImpl",
+    "naming": {
+      "metatype": "metatype",
+      "propertyName": "propertyName",
+      "getter": "getter"
+    }
+  },
+  "guice": {
+    "enabled": true,
+    "basePackage": "guice",
+    "propertyPackage": "org.rookit.api.meta"
+  }
+}

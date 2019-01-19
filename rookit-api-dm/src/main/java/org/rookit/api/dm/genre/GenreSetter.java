@@ -22,10 +22,10 @@
 package org.rookit.api.dm.genre;
 
 @SuppressWarnings("javadoc")
-public interface GenreSetter<T> {
+public interface GenreSetter {
 
-    T resetDescription();
+    void resetDescription();
     
-    T setDescription(String description);
+    void setDescription(String description);
 
 }

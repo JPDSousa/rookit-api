@@ -21,11 +21,11 @@
  ******************************************************************************/
 package org.rookit.api.dm.play.able;
 
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.utils.optional.Optional;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 @PropertyContainer
 public interface EventStats {

@@ -6,13 +6,12 @@
     <parent>
         <groupId>com.github.JPDSousa</groupId>
         <artifactId>rookit</artifactId>
-        <version>-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>rookit-api</artifactId>
     <name>Rookit API</name>
     <modules>
         <module>rookit-api-dm</module>
-        <module>rookit-api-auto</module>
     </modules>
     <dependencies>
         <dependency>
@@ -31,10 +30,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
 </project>

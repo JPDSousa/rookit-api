@@ -22,44 +22,31 @@
 
 package org.rookit.api.dm.track;
 
-import org.rookit.utils.convention.annotation.Entity;
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.api.dm.genre.Genreable;
+import org.rookit.api.dm.genre.able.Genreable;
 import org.rookit.api.dm.track.artist.TrackArtists;
 import org.rookit.api.dm.track.audio.AudioContent;
 import org.rookit.api.dm.track.lyrics.Lyrics;
 import org.rookit.api.dm.track.title.TrackTitle;
-import org.rookit.utils.OptionalUtils;
-
-import java.util.Optional;
+import org.rookit.convention.annotation.Entity;
+import org.rookit.convention.annotation.Property;
 
 @SuppressWarnings("javadoc")
 @Entity
-public interface Track extends Genreable, Comparable<Track>, TrackSetter<Void> {
-
-    @Override
-    default int compareTo(final Track o) {
-        final int title = title().toString().compareTo(o.title().toString());
-        return (title == 0) ? OptionalUtils.compare(id(), o.id()) : title;
-    }
-
-    Optional<VersionTrack> asVersionTrack();
+public interface Track extends Genreable, Comparable<Track>, TrackSetter {
 
     @Property
     AudioContent audio();
 
-    @Property
+    @Property(isSettable = true)
     TrackArtists artists();
 
     @Property
     Lyrics lyrics();
 
-    @Property
+    @Property(isSettable = true)
     TrackTitle title();
 
-    @Property
+    @Property(isSettable = true)
     TypeTrack type();
-
-    boolean isVersionTrack();
 
 }

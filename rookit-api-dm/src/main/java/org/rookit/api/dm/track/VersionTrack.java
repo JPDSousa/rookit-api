@@ -21,9 +21,11 @@
  ******************************************************************************/
 package org.rookit.api.dm.track;
 
-import org.rookit.api.dm.track.artist.VersionTrackArtists;
-import org.rookit.utils.convention.annotation.EntityExtension;
-import org.rookit.utils.convention.annotation.Property;
+import org.rookit.api.dm.artist.Artist;
+import org.rookit.convention.annotation.EntityExtension;
+import org.rookit.convention.annotation.Property;
+
+import java.util.Collection;
 
 @SuppressWarnings("javadoc")
 @EntityExtension
@@ -36,7 +38,7 @@ public interface VersionTrack extends Track {
     String versionToken();
 
     @Property
-    VersionTrackArtists versionArtists();
+    Collection<Artist> versionArtists();
 
     @Property
     TypeVersion versionType();

@@ -1,14 +1,14 @@
 package org.rookit.api.dm.artist.name;
 
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
 
 import java.util.Collection;
 
 @PropertyContainer
 public interface ArtistName extends Comparable<ArtistName> {
 
-    @Property
+    @Property(isSettable = true)
     String official();
 
     @Property

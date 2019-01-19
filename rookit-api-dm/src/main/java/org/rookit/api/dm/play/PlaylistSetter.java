@@ -21,9 +21,13 @@
  ******************************************************************************/
 package org.rookit.api.dm.play;
 
-@SuppressWarnings("javadoc")
-public interface PlaylistSetter<T> {
+import org.rookit.api.bistream.BiStream;
 
-    T setImage(byte[] image);
+@SuppressWarnings("javadoc")
+public interface PlaylistSetter {
+
+    void setImage(byte[] image);
+
+    void setImage(BiStream image);
 
 }

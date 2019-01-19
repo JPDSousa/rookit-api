@@ -42,12 +42,10 @@ public interface TrackKey extends Key {
 
     String title();
 
+    // TODO these 4 methods/properties are from one of Track's subtypes, which is a scalability bottleneck
     Track original();
-
     Optional<String> versionToken();
-
     Collection<Artist> getVersionArtists();
-
     TypeVersion getVersionType();
 
 }

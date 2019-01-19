@@ -35,13 +35,12 @@ public interface ArtistKey extends Key {
 
     TypeArtist type();
 
+    // TODO these three methods/properties come from subtypes of Artist, which represents a scalability bottleneck
     @Value.Default
     default String fullName() {
         return name();
     }
-
     TypeGender gender();
-
     TypeGroup groupType();
 
     String isni();

@@ -21,11 +21,10 @@
  ******************************************************************************/
 package org.rookit.api.dm.track.lyrics;
 
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.utils.optional.Optional;
 import org.rookit.utils.optional.OptionalBoolean;
-
-import java.util.Optional;
 
 @PropertyContainer
 public interface Lyrics {

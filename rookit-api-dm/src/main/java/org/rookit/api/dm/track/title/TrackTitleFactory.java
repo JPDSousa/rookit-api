@@ -21,15 +21,17 @@
  ******************************************************************************/
 package org.rookit.api.dm.track.title;
 
+import org.rookit.api.dm.artist.Artist;
 import org.rookit.api.dm.factory.RookitFactory;
 import org.rookit.api.dm.key.Key;
 import org.rookit.api.dm.track.TypeVersion;
 import org.rookit.api.dm.track.artist.TrackArtists;
-import org.rookit.api.dm.track.artist.VersionTrackArtists;
+
+import java.util.Collection;
 
 public interface TrackTitleFactory extends RookitFactory<TrackTitle, Key> {
 
     TrackTitle create(String title, TrackArtists artists);
 
-    TrackTitle createVersionTrackTitle(TrackTitle original, VersionTrackArtists artists, TypeVersion typeVersion);
+    TrackTitle createVersionTrackTitle(TrackTitle original, Collection<Artist> versionArtists, TypeVersion typeVersion);
 }

@@ -31,7 +31,7 @@ import org.apache.commons.lang3.tuple.Pair;
  *
  *         <p>
  *         The release release is part of an album signature. It assures that there
- *         can be two albums from the same set of artists with the same names,
+ *         can be two albums from the same withProperty of artists with the same names,
  *         as long as they represent different release types.
  */
 @SuppressWarnings("javadoc")

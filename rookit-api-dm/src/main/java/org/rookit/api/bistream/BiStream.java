@@ -34,4 +34,6 @@ public interface BiStream {
     InputStream readFrom();
 
     OutputStream writeTo();
+
+    void copyFrom(BiStream biStream);
 }

@@ -21,13 +21,13 @@
  ******************************************************************************/
 package org.rookit.api.dm.track.title;
 
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
 
 @PropertyContainer
 public interface TrackTitle {
 
-    @Property
+    @Property(isSettable = true)
     Title singleTitle();
 
     Title longFullTitle();

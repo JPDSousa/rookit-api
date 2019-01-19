@@ -22,22 +22,22 @@
 
 package org.rookit.api.dm.play;
 
-import org.rookit.utils.convention.annotation.Entity;
-import org.rookit.utils.convention.annotation.Property;
+import org.rookit.convention.annotation.Entity;
+import org.rookit.convention.annotation.Property;
 import org.rookit.api.bistream.BiStream;
-import org.rookit.api.dm.genre.Genreable;
+import org.rookit.api.dm.genre.able.Genreable;
 
 @SuppressWarnings("javadoc")
 @Entity
-public interface Playlist extends Genreable, PlaylistSetter<Void> {
+public interface Playlist extends Genreable, PlaylistSetter {
 
     @Property
     BiStream image();
 
-    @Property
+    @Property(isSettable = true)
     String name();
 
-    @Property
+    @Property(isSettable = true)
     TypePlaylist type();
 
 }

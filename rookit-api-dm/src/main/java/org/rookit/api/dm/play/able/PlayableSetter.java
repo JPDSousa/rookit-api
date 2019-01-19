@@ -25,20 +25,20 @@ import java.time.Duration;
 import java.time.LocalDate;
 
 @SuppressWarnings("javadoc")
-public interface PlayableSetter<T> {
+public interface PlayableSetter {
 
-    T play();
+    void play();
     
-    T setDuration(Duration duration);
+    void setDuration(Duration duration);
 
-    T setLastPlayed(LocalDate lastPlayed);
+    void setLastPlayed(LocalDate lastPlayed);
 
-    T setLastSkipped(LocalDate lastSkipped);
+    void setLastSkipped(LocalDate lastSkipped);
     
-    T setPlays(long plays);
+    void setPlays(long plays);
 
-    T setSkipped(long skipped);
+    void setSkipped(long skipped);
 
-    T skip();
+    void skip();
 
 }

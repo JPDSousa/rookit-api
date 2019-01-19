@@ -24,22 +24,22 @@ package org.rookit.api.dm.track.audio;
 import com.kekstudio.musictheory.Key;
 
 @SuppressWarnings("javadoc")
-public interface AudioFeatureSetter<T> {
+public interface AudioFeatureSetter {
 
-    T setAcoustic(boolean isAcoustic);
+    void setAcoustic(boolean isAcoustic);
 
-    T setBpm(short bpm);
+    void setBpm(short bpm);
 
-    T setDanceability(double danceability);
+    void setDanceability(double danceability);
 
-    T setEnergy(double energy);
+    void setEnergy(double energy);
 
-    T setInstrumental(boolean isInstrumental);
+    void setInstrumental(boolean isInstrumental);
 
-    T setLive(boolean isLive);
+    void setLive(boolean isLive);
 
-    T setTrackKey(Key trackKey);
+    void setTrackKey(Key trackKey);
 
-    T setValence(double valence);
+    void setValence(double valence);
 
 }

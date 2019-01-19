@@ -1,9 +1,8 @@
 package org.rookit.api.dm.artist.external;
 
-import org.rookit.utils.convention.annotation.Property;
-import org.rookit.utils.convention.annotation.PropertyContainer;
-
-import java.util.Optional;
+import org.rookit.convention.annotation.Property;
+import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.utils.optional.Optional;
 
 @PropertyContainer
 public interface ExternalIdentifiers {
@@ -11,6 +10,6 @@ public interface ExternalIdentifiers {
     @Property
     Optional<String> ipi();
 
-    @Property
+    @Property(isSettable = true)
     String isni();
 }

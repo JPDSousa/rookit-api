@@ -21,16 +21,16 @@
  ******************************************************************************/
 package org.rookit.api.dm.artist;
 
-import org.rookit.utils.convention.annotation.EntityExtension;
-import org.rookit.utils.convention.annotation.Property;
+import org.rookit.convention.annotation.EntityExtension;
+import org.rookit.convention.annotation.Property;
 
 @SuppressWarnings("javadoc")
 @EntityExtension
 public interface Musician extends Artist {
 
-    @Property
+    @Property(isSettable = true)
     String fullName();
 
-    @Property
+    @Property(isSettable = true)
     TypeGender gender();
 }

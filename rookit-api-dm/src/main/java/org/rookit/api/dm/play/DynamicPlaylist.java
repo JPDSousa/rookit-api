@@ -25,7 +25,7 @@ package org.rookit.api.dm.play;
 import one.util.streamex.StreamEx;
 
 import org.rookit.api.dm.track.Track;
-import org.rookit.utils.convention.annotation.EntityExtension;
+import org.rookit.convention.annotation.EntityExtension;
 
 @SuppressWarnings("javadoc")
 @EntityExtension

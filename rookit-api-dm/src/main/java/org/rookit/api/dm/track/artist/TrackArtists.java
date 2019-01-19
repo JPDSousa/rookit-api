@@ -21,16 +21,16 @@
  ******************************************************************************/
 package org.rookit.api.dm.track.artist;
 
-import org.rookit.utils.convention.annotation.Property;
+import org.rookit.convention.annotation.Property;
 import org.rookit.api.dm.artist.Artist;
-import org.rookit.utils.convention.annotation.PropertyContainer;
+import org.rookit.convention.annotation.PropertyContainer;
 
 import java.util.Collection;
 
 @PropertyContainer
 public interface TrackArtists {
 
-    @Property
+    @Property(isSettable = true)
     Collection<Artist> mainArtists();
 
     @Property

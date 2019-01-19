@@ -11,12 +11,12 @@
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUvoid WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUvoid NOvoid LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENvoid SHALL THE
+ * AUTHORS OR COPYRIGHvoid HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORvoid OR OTHERWISE, ARISING FROM,
+ * OUvoid OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
 package org.rookit.api.dm.track;
@@ -26,28 +26,28 @@ import org.rookit.api.dm.artist.Artist;
 import java.util.Collection;
 
 @SuppressWarnings("javadoc")
-public interface TrackSetter<T> {
+public interface TrackSetter {
 
-    T addFeature(Artist artist);
+    void addFeature(Artist artist);
 
-    T addProducer(Artist producer);
+    void addProducer(Artist producer);
 
-    T clearFeatures();
+    void clearFeatures();
     
-    T clearProducers();
+    void clearProducers();
     
-    T removeFeature(Artist artist);
+    void removeFeature(Artist artist);
 
-    T removeProducer(Artist producer);
+    void removeProducer(Artist producer);
 
-    T setAudioContent(byte[] audioContent);
+    void setAudioContent(byte[] audioContent);
     
-    T setExplicit(boolean explicit);
+    void setExplicit(boolean explicit);
     
-    T setFeatures(Collection<Artist> features);
+    void setFeatures(Collection<Artist> features);
     
-    T setLyrics(String lyrics);
+    void setLyrics(String lyrics);
 
-    T setProducers(Collection<Artist> producers);
+    void setProducers(Collection<Artist> producers);
 
 }
