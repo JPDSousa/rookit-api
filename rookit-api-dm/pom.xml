@@ -105,12 +105,12 @@
             <dependency>
                 <groupId>one.util</groupId>
                 <artifactId>streamex</artifactId>
-                <version>0.6.6</version>
+                <version>0.6.7</version>
             </dependency>
             <dependency>
                 <groupId>com.neovisionaries</groupId>
                 <artifactId>nv-i18n</artifactId>
-                <version>1.22</version>
+                <version>1.23</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
