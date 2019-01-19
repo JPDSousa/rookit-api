@@ -147,7 +147,7 @@
             <dependency>
                 <groupId>one.util</groupId>
                 <artifactId>streamex</artifactId>
-                <version>0.6.6</version>
+                <version>0.6.8</version>
             </dependency>
             <dependency>
                 <groupId>com.neovisionaries</groupId>
