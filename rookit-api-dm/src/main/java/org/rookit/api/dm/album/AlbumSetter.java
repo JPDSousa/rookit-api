@@ -21,9 +21,9 @@
  ******************************************************************************/
 package org.rookit.api.dm.album;
 
-import org.rookit.api.bistream.BiStream;
 import org.rookit.api.dm.album.slot.TrackSlot;
 import org.rookit.api.dm.track.Track;
+import org.rookit.io.data.DataBucket;
 
 import java.nio.file.Files;
 import java.time.LocalDate;
@@ -104,7 +104,7 @@ public interface AlbumSetter {
      */
     void setCover(byte[] image);
 
-    void setCover(BiStream image);
+    void setCover(DataBucket image);
 
     /**
      * Sets a new release date for the album. The old date assigned will be

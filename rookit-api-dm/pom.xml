@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.JPDSousa</groupId>
         <artifactId>rookit-api</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>rookit-api-dm</artifactId>
@@ -20,46 +20,6 @@
                     <execution>
                         <configuration combine.self="override">
                             <annotationProcessorPaths>
-                                <path>
-                                    <groupId>${rookit.group}</groupId>
-                                    <artifactId>rookit-convention-auto-api</artifactId>
-                                    <version>${rookit.version}</version>
-                                </path>
-                                <path>
-                                    <groupId>${rookit.group}</groupId>
-                                    <artifactId>rookit-convention-auto-guice</artifactId>
-                                    <version>${rookit.version}</version>
-                                </path>
-                                <path>
-                                    <groupId>${rookit.group}</groupId>
-                                    <artifactId>rookit-convention-auto-metatype</artifactId>
-                                    <version>${rookit.version}</version>
-                                </path>
-                                <path>
-                                    <groupId>${rookit.group}</groupId>
-                                    <artifactId>rookit-convention-auto-property</artifactId>
-                                    <version>${rookit.version}</version>
-                                </path>
-                                <path>
-                                    <groupId>${rookit.group}</groupId>
-                                    <artifactId>rookit-storage-auto-filter</artifactId>
-                                    <version>${rookit.version}</version>
-                                </path>
-                                <path>
-                                    <groupId>${rookit.group}</groupId>
-                                    <artifactId>rookit-storage-auto-query</artifactId>
-                                    <version>${rookit.version}</version>
-                                </path>
-                                <path>
-                                    <groupId>${rookit.group}</groupId>
-                                    <artifactId>rookit-storage-auto-update-filter</artifactId>
-                                    <version>${rookit.version}</version>
-                                </path>
-                                <path>
-                                    <groupId>${rookit.group}</groupId>
-                                    <artifactId>rookit-storage-auto-update</artifactId>
-                                    <version>${rookit.version}</version>
-                                </path>
                             </annotationProcessorPaths>
                         </configuration>
                     </execution>
@@ -70,12 +30,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-utils-api</artifactId>
+            <groupId>${rookit.group}.rookit-utils</groupId>
+            <artifactId>api</artifactId>
         </dependency>
         <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-storage-api</artifactId>
+            <groupId>${rookit.group}.rookit-storage</groupId>
+            <artifactId>api</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.Andy671</groupId>
@@ -87,128 +47,50 @@
         </dependency>
         <!-- Code Generators -->
         <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-convention-auto-api</artifactId>
+            <groupId>${rookit.group}.rookit-convention</groupId>
+            <artifactId>auto-guice</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-convention-auto-guice</artifactId>
+            <groupId>${rookit.group}.rookit-convention</groupId>
+            <artifactId>auto-metatype-api-generator</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-convention-auto-metatype</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-convention-auto-property</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-storage-auto-filter</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-storage-auto-query</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-storage-auto-update-filter</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${rookit.group}</groupId>
-            <artifactId>rookit-storage-auto-update</artifactId>
-            <scope>provided</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>${rookit.group}.rookit-convention</groupId>-->
+<!--            <artifactId>auto-metatype-type</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>${rookit.group}.rookit-convention</groupId>-->
+<!--            <artifactId>auto-metatype-property</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>${rookit.group}.rookit-convention</groupId>-->
+<!--            <artifactId>auto-module</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>${rookit.group}.rookit-storage</groupId>-->
+            <!--<artifactId>auto-filter</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>${rookit.group}.rookit-storage</groupId>-->
+            <!--<artifactId>auto-query</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>${rookit.group}.rookit-storage</groupId>-->
+            <!--<artifactId>auto-update-filter</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>${rookit.group}.rookit-storage</groupId>-->
+            <!--<artifactId>auto-update</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-utils-api</artifactId>
-                <version>${rookit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-storage-api</artifactId>
-                <version>${rookit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.Andy671</groupId>
-                <artifactId>MusicTheory</artifactId>
-                <version>v0.6.9</version>
-            </dependency>
-            <dependency>
-                <groupId>one.util</groupId>
-                <artifactId>streamex</artifactId>
-                <version>0.6.6</version>
-            </dependency>
-            <dependency>
-                <groupId>com.neovisionaries</groupId>
-                <artifactId>nv-i18n</artifactId>
-                <version>1.25</version>
-            </dependency>
-            <!-- Code Generators -->
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-convention-auto-api</artifactId>
-                <version>${rookit.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-convention-auto-metatype</artifactId>
-                <version>${rookit.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-convention-auto-guice</artifactId>
-                <version>${rookit.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-convention-auto-property</artifactId>
-                <version>${rookit.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-storage-auto-filter</artifactId>
-                <version>${rookit.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-storage-auto-query</artifactId>
-                <version>${rookit.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-storage-auto-update-filter</artifactId>
-                <version>${rookit.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>${rookit.group}</groupId>
-                <artifactId>rookit-storage-auto-update</artifactId>
-                <version>${rookit.version}</version>
-                <scope>provided</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+
 </project>

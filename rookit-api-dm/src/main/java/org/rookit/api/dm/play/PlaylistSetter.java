@@ -21,13 +21,13 @@
  ******************************************************************************/
 package org.rookit.api.dm.play;
 
-import org.rookit.api.bistream.BiStream;
+import org.rookit.io.data.DataBucket;
 
 @SuppressWarnings("javadoc")
 public interface PlaylistSetter {
 
     void setImage(byte[] image);
 
-    void setImage(BiStream image);
+    void setImage(DataBucket image);
 
 }

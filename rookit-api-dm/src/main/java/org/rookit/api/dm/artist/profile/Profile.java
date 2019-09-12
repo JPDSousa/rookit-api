@@ -22,12 +22,12 @@
 package org.rookit.api.dm.artist.profile;
 
 import com.neovisionaries.i18n.CountryCode;
-import org.rookit.api.bistream.BiStream;
 import org.rookit.api.dm.artist.external.ExternalIdentifiers;
 import org.rookit.api.dm.artist.name.ArtistName;
 import org.rookit.api.dm.artist.timeline.Timeline;
 import org.rookit.convention.annotation.Property;
 import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.io.data.DataBucket;
 import org.rookit.utils.optional.Optional;
 
 @PropertyContainer
@@ -56,5 +56,5 @@ public interface Profile extends Comparable<Profile> {
     Optional<CountryCode> origin();
 
     @Property
-    BiStream picture();
+    DataBucket picture();
 }

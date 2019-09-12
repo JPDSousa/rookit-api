@@ -23,8 +23,8 @@ package org.rookit.api.dm.track.audio;
 
 import org.immutables.value.Value;
 import org.rookit.convention.annotation.Property;
-import org.rookit.api.bistream.BiStream;
 import org.rookit.convention.annotation.PropertyContainer;
+import org.rookit.io.data.DataBucket;
 
 @Value.Immutable
 @Value.Style(canBuild = "isBuildable")
@@ -35,5 +35,5 @@ public interface AudioContent {
     AudioFeature features();
 
     @Property
-    BiStream content();
+    DataBucket content();
 }

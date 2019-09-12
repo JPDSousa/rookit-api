@@ -22,17 +22,17 @@
 
 package org.rookit.api.dm.play;
 
+import org.rookit.api.dm.genre.able.Genreable;
 import org.rookit.convention.annotation.Entity;
 import org.rookit.convention.annotation.Property;
-import org.rookit.api.bistream.BiStream;
-import org.rookit.api.dm.genre.able.Genreable;
+import org.rookit.io.data.DataBucket;
 
 @SuppressWarnings("javadoc")
 @Entity
 public interface Playlist extends Genreable, PlaylistSetter {
 
     @Property
-    BiStream image();
+    DataBucket image();
 
     @Property(isSettable = true)
     String name();

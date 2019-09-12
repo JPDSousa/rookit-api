@@ -22,7 +22,6 @@
 
 package org.rookit.api.dm.album;
 
-import org.rookit.api.bistream.BiStream;
 import org.rookit.api.dm.album.factory.AlbumFactory;
 import org.rookit.api.dm.album.key.AlbumKey;
 import org.rookit.api.dm.album.release.Release;
@@ -33,6 +32,7 @@ import org.rookit.api.dm.genre.able.Genreable;
 import org.rookit.api.dm.track.Track;
 import org.rookit.convention.annotation.Entity;
 import org.rookit.convention.annotation.Property;
+import org.rookit.io.data.DataBucket;
 import org.rookit.utils.optional.Optional;
 
 import java.nio.file.Files;
@@ -136,7 +136,7 @@ public interface Album extends Genreable, Comparable<Album>, AlbumSetter {
      * @return a byte array representative of the cover image.
      */
     @Property
-    BiStream cover();
+    DataBucket cover();
 
     @Override
     default Optional<Duration> duration() {
